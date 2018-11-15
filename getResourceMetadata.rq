@@ -1,0 +1,10 @@
+#+ endpoint: http://ontosoft.isi.edu:3030/ds/query
+#+ method: GET
+
+#+ Query that retrieves all metadata from a target resource ?_mv
+
+
+SELECT ?prop ?value
+WHERE {
+  ?_mv ?prop ?value
+}
