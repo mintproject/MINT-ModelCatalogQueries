@@ -43,5 +43,7 @@ getModelsForCategory <string:Category>
 
 getVariablesAndUnits<Input/Output>
     returns the variablePresentations associated to the provided input/output, and their units.
+    
+[TO DO query]: What models produce output variables with a particular standard name (or canonical name)
 
 
