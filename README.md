@@ -17,33 +17,22 @@ GRLC REST APU spec available at: http://ontosoft.isi.edu:8001/api/KnowledgeCaptu
 
 List of queries to be implemented:
 
-(done) getModels 
-    returns description, label, category, versions.
+*(done) getModels: returns a description, label, category and versions of each model.
     
-(done) getVersion<version> (done by adding a generic getResourceMetadata<URI>)
-    given a version, returns all the metadata about it.
+*(done) getResourceMetadata <URI>: given a resource (model, version, configuration, etc.), returns all the metadata about it.
 
-getConfigurations
-    returns version, configuration, description, other metadata such as invocation code.
-    
-getConfiguration<config> (done by adding a generic getResourceMetadata<URI>)
-    returns all the metadata about <config>: version, configuration, description, other metadata such as invocation code.
-    
-getVariablePresentationsForModel<Model>
-    returns configuration, input variables, output variables
+*getConfigurations: returns version, configuration, description, other metadata such as invocation code.
+        
+*getVariablePresentationsForModel<Model>: returns a list of the available configurations, input variables and output variables given a certain model
 
-getConfigurationsI_O
-    returns configurations, inputs files, output files.
+*getConfigurationsI_O: returns a list of configurations, their inputs files and output files.
     
-getInputForStandardVariable<Variable>
-    returns the input (or output) for the standard variable provided 
+*getInputForStandardVariable<Variable>: returns the input (or output) for the standard variable provided 
     
-getModelsForCategory <string:Category>
-    returns the models associated to a particular category
+*getModelsForCategory <string:Category>: returns the models associated to a particular category
 
-getVariablesAndUnits<Input/Output>
-    returns the variablePresentations associated to the provided input/output, and their units.
+*getVariablesAndUnits<Input/Output>: returns the variablePresentations associated to the provided input/output, and their units.
     
-[TO DO query]: What models produce output variables with a particular standard name (or canonical name)
+*getModelOutputsForVariable <string:standard name>: Query that given a standard variable, returns the models which produce output variables with a particular standard name (or canonical name)
 
 
