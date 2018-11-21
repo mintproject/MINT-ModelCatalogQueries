@@ -19,8 +19,8 @@ GRLC REST APU spec available at: http://ontosoft.isi.edu:8001/api/KnowledgeCaptu
 
 * (done) getModels: returns a description, label, category and versions of each model.  
 * (done) getResourceMetadata [iri:URI]: given a resource (model, version, configuration, etc.), returns all the metadata about it.
-* getConfigurations: returns version, configuration, description, other metadata such as invocation code.
-* getVariablePresentationsForModel[iri:Model]: returns a list of the available configurations, input variables and output variables given a certain model
+* (done) getConfigurations: returns version, configuration, description, other metadata such as invocation code.
+* (done) getVariablePresentationsForModel[iri:Model]: returns a list of the available configurations, input variables and output variables given a certain model
 * getConfigurationsI_O: returns a list of configurations, their inputs files and output files.
 * getInputForStandardVariable[string:Variable]: returns the input (or output) for the standard variable provided 
 * getModelsForCategory (string:Category]: returns the models associated to a particular category
