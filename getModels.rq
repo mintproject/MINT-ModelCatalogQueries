@@ -1,3 +1,4 @@
+#+ endpoint: http://ontosoft.isi.edu:3030/ds/query
 #+ method: GET
 
 #+ summary: Query that retrieves all models and their basic metadata.
