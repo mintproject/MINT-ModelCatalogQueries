@@ -1,8 +1,8 @@
 #+ endpoint: http://ontosoft.isi.edu:3030/ds/query
 #+ method: GET
+#+ summary: Query that returns a list of the available configurations, input variables and output variables given a certain model iri ?_model
 #+ defaults:
 #+   - model: https://w3id.org/mint/instance#TOPOFLOW
-#+ summary: Query that returns a list of the available configurations, input variables and output variables given a certain model iri ?_model
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX model: <https://w3id.org/mint/modelCatalog#>
