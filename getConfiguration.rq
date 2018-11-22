@@ -25,4 +25,4 @@ WHERE {
     ?ti mc:usesUnit ?tIUnits;
         mc:hasValue ?tIValue.
   }.
-}GROUP BY ?_modelConfig_iri ?label ?desc ?cag ?tIUnits ?tIValue
+}GROUP BY ?label ?desc ?cag ?tIUnits ?tIValue
