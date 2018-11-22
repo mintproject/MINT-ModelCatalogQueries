@@ -1,0 +1,14 @@
+#+ endpoint: http://ontosoft.isi.edu:3030/ds/query
+#+ method: GET
+#+ summary: Query that returns the input (or output) for the standard variable ?_std provided.
+#+ defaults:
+#+   - std: land_surface__albedo
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX model: <https://w3id.org/mint/commons#>
+SELECT ?ds
+WHERE {
+  ?ds a model:DatasetSpecification.
+  ?ds model:hasPresentation ?vp.
+  ?vp model:hasStandardVariable ?_std_string.
+}
