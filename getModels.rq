@@ -5,11 +5,13 @@
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX model: <https://w3id.org/mint/modelCatalog#>
+PREFIX purl: <http://purl.org/dc/terms/>
+
 SELECT ?model ?label ?desc ?cat ?v
 WHERE {
   ?model a model:Model.
   ?model rdfs:label ?label.
-  OPTIONAL{?model model:hasDescription ?desc}.
-  OPTIONAL{?model model:hasCategory ?cat}.
+  OPTIONAL{?model purl:description ?desc}.
+  OPTIONAL{?model model:hasModelCategory ?cat}.
   OPTIONAL{?model model:hasVersion ?v}.
 }
