@@ -1,15 +1,18 @@
 #+ endpoint: http://ontosoft.isi.edu:3030/ds/query
 #+ method: GET
-
 #+ summary: Query that retrieves all configurations and their basic metadata.
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX model: <https://w3id.org/mint/modelCatalog#>
-SELECT ?config ?label ?desc ?cat ?v
+PREFIX purl: <http://purl.org/dc/terms/>
+
+SELECT ?model_config ?label ?desc ?input ?output ?cag ?timeInterval
 WHERE {
-  ?config a model:ModelConfiguration.
-  ?conifg rdfs:label ?label.
-  OPTIONAL{?config model:hasDescription ?desc}.
-  OPTIONAL{?config model:hasCategory ?cat}.
-  OPTIONAL{?config model:hasVersion ?v}.
+  ?model_config a model:ModelConfiguration.
+  ?model_config rdfs:label ?label.
+  OPTIONAL{?model_config purl:description ?desc}.
+  OPTIONAL{?model_config model:hasInput ?input}.
+  OPTIONAL{?model_config model:hasOutput ?output}.
+  OPTIONAL{?model_config model:hasCAG ?cag}.
+  OPTIONAL{?model_config model:hasTimeInterval ?timeInterval}.
 }
