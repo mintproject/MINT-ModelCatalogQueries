@@ -22,7 +22,7 @@ GRLC REST APU spec available at: http://ontosoft.isi.edu:8001/api/KnowledgeCaptu
 * (done) getConfigurations: returns version, configuration, description, other metadata such as invocation code.
 * (done) getVariablePresentationsForModel[iri:Model]: returns a list of the available configurations, input variables and output variables given a certain model
 * (done) getConfigurationsI_O: returns a list of configurations, their inputs files and output files.
-* getInputForStandardVariable[string:Variable]: returns the input (or output) for the standard variable provided 
+* (done) getInputForStandardVariable[string:Variable]: returns the input (or output) for the standard variable provided 
 * (done) getModelsForCategory (string:Category]: returns the models associated to a particular category
 * (done) getVariablesAndUnits[iri:Input/Output]: returns the variablePresentations associated to the provided input/output, and their units.
 * (done) getModelOutputsForVariable [string:standard name]: Query that given a standard variable, returns the models which produce output variables with a particular standard name (or canonical name)
