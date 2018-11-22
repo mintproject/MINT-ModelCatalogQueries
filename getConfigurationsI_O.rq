@@ -3,7 +3,6 @@
 
 #+ summary: Query that returns a list of all available configurations, their inputs files and output files.
 
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX model: <https://w3id.org/mint/modelCatalog#>
 SELECT ?config
 (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables)
