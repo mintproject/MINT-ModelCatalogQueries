@@ -1,6 +1,5 @@
 #+ endpoint: http://ontosoft.isi.edu:3030/ds/query
 #+ method: GET
-
 #+ summary: Query that returns all metadata of a configuration: the model version it belongs to, its label, description, inputs, outputs, modules, processes, time step (unit and value) and CAG id associated to it.
 
 #+ defaults:
