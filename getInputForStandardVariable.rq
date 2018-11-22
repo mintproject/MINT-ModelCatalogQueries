@@ -2,13 +2,14 @@
 #+ method: GET
 #+ summary: Query that returns the input (or output) for the standard variable ?_std provided.
 #+ defaults:
-#+   - std: land_surface__albedo
+#+   - std: soil_moisture__vertical_integral_of_mass-per-volume_concentration
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX model: <https://w3id.org/mint/commons#>
-SELECT ?ds
+PREFIX model: <https://w3id.org/mint/modelCatalog#>
+
+SELECT DISTINCT ?io
 WHERE {
-  ?ds a model:DatasetSpecification.
-  ?ds model:hasPresentation ?vp.
-  ?vp model:hasStandardVariable ?_std_string.
+  ?io a model:DatasetSpecification.
+  ?io model:hasPresentation ?presentation.
+  ?presentation model:hasStandardVariable ?_std_string.
 }
