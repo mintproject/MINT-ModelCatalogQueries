@@ -8,7 +8,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 PREFIX dc: <http://purl.org/dc/terms/>
 
-SELECT ?_model_config_iri ?label ?desc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables) (GROUP_CONCAT(DISTINCT ?module;SEPARATOR=', ') AS ?modules) (GROUP_CONCAT(DISTINCT ?process;SEPARATOR=', ') AS ?processes) ?cag ?tIUnits ?tIValue
+SELECT ?label ?desc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables) (GROUP_CONCAT(DISTINCT ?module;SEPARATOR=', ') AS ?modules) (GROUP_CONCAT(DISTINCT ?process;SEPARATOR=', ') AS ?processes) ?cag ?tIUnits ?tIValue
 WHERE {
   ?_model_config_iri a mc:ModelConfiguration.
   ?_model_config_iri rdfs:label ?label.
