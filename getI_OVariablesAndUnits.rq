@@ -2,7 +2,7 @@
 #+ method: GET
 #+ summary: Query that returns returns the variablePresentations associated to the provided input/output, and their units.
 #+ defaults:
-#+   - io: https://w3id.org/mint/instance#PIHM_PRCP
+#+   - io: https://w3id.org/mint/instance#pihm_forc
 
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 SELECT distinct ?vp ?unit
