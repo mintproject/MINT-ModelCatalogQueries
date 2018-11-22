@@ -9,7 +9,7 @@ PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 SELECT ?process
 (GROUP_CONCAT(DISTINCT ?influences;SEPARATOR=', ') AS ?process_influences)
 WHERE {
-  ?_cag_iri mc:has_part ?process.
+  ?_cag_iri mc:hasPart ?process.
   ?process mc:influences ?influences.
 }
 GROUP BY ?process
