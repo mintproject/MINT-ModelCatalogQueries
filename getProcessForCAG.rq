@@ -1,16 +1,15 @@
 #+ endpoint: http://ontosoft.isi.edu:3030/ds/query
 #+ method: GET
-#+ summary: Given a CAG ?_cag, return all the processes and influences associated with it.
+#+ summary: Given a CAG ?_cag, this query returns all the processes associated with it (and their dependencies).
 #+ defaults:
 #+   - cag: https://w3id.org/mint/instance#cycles_cfg_simple_CAG
 
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX model: <https://w3id.org/mint/modelCatalog#>
+PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 
 SELECT ?process
 (GROUP_CONCAT(DISTINCT ?influences;SEPARATOR=', ') AS ?process_influences)
 WHERE {
-  ?_cag_iri model:has_part ?process.
-  ?process model:influences ?influences.
+  ?_cag_iri mc:has_part ?process.
+  ?process mc:influences ?influences.
 }
 GROUP BY ?process

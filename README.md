@@ -15,18 +15,22 @@ GRLC REST APU spec available at: http://ontosoft.isi.edu:8001/api/KnowledgeCaptu
 
 -----------------
 
-# List of queries to be implemented:
+# List of queries supported by the API:
 
+* getConfiguration [iri:Configuration URI]: Returns all metadata of a configuration: the model version it belongs to, its label, description, inputs, outputs, modules, processes, time step (unit and value) and CAG id associated to it.
+* (done) getConfigurations: returns all existing configurations, the model and model version they belong to, their label and description associated to them.
+* (done) getConfigurationsI_O: Returns a list of all available configurations, their inputs files and output files.
+* (done) getI_OForStandardVariable[string:Variable]: Given a standard name, this query returns which input, output, configuration, version and model refers to it.
+* (done) getI_OVariablesAndUnits[iri:Input/Output]: returns the variablePresentations associated to the provided input/output, and their units.
+* (done) getModelConfigurationsForVariable [string:standard name]: Query that given a standard variable, returns the model configurations which produce output variables with that standard name. 
 * (done) getModels: returns a description, label, category and versions of each model.  
-* (done) getResourceMetadata [iri:URI]: given a resource (model, version, configuration, etc.), returns all the metadata about it.
-* (done) getConfigurations: returns version, configuration, description, other metadata such as invocation code.
-* (done) getVariablePresentationsForModel[iri:Model]: returns a list of the available configurations, input variables and output variables given a certain model
-* (done) getConfigurationsI_O: returns a list of configurations, their inputs files and output files.
-* (done) getInputForStandardVariable[string:Variable]: returns the input (or output) for the standard variable provided 
 * (done) getModelsForCategory (string:Category]: returns the models associated to a particular category
-* (done) getVariablesAndUnits[iri:Input/Output]: returns the variablePresentations associated to the provided input/output, and their units.
-* (done) getModelOutputsForVariable [string:standard name]: Query that given a standard variable, returns the models which produce output variables with a particular standard name (or canonical name)
-* (done) getProcessForCAG[iri:CAG]: Given a CAG, return all the processes associated with it. 
+* (done) getProcessesForCAG[iri:CAG]: Given a CAG, return all the processes associated with it (and their dependencies).
+* (done) getResourceMetadata [iri:URI]: given a resource URI (model, version, configuration, etc.), returns all the metadata about it.
+* (done) getVariablePresentationsForModel[iri:Model]: returns a list of the available configurations, input variables and output variables given a certain model
+
+ 
+ 
 
 
 
