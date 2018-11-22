@@ -1,4 +1,3 @@
-#+ endpoint: http://ontosoft.isi.edu:3030/ds/query
 #+ method: GET
 #+ summary: Query that returns all existing configurations, the model and model version they belong to, their label and description associated to them.
 
