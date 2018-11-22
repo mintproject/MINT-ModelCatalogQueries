@@ -1,8 +1,9 @@
 #+ endpoint: http://ontosoft.isi.edu:3030/ds/query
 #+ method: GET
 #+ summary: Query that returns all metadata of a configuration: the model version it belongs to, its label, description, inputs, outputs, modules, processes, time step (unit and value) and CAG id associated to it.
+
 #+ defaults:
-#+   - model_config: https://w3id.org/mint/instance#pihm_cfg_simple
+#+   - modelConfig: https://w3id.org/mint/instance#pihm_cfg_simple
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
@@ -10,17 +11,17 @@ PREFIX dc: <http://purl.org/dc/terms/>
 
 SELECT ?label ?desc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables) (GROUP_CONCAT(DISTINCT ?module;SEPARATOR=', ') AS ?modules) (GROUP_CONCAT(DISTINCT ?process;SEPARATOR=', ') AS ?processes) ?cag ?tIUnits ?tIValue
 WHERE {
-  ?_model_config_iri a mc:ModelConfiguration.
-  ?_model_config_iri rdfs:label ?label.
-  OPTIONAL{?_model_config_iri dc:description ?desc}.
-  OPTIONAL{?_model_config_iri mc:hasInput ?input}.
-  OPTIONAL{?_model_config_iri mc:hasOutput ?output}.
-  OPTIONAL{?_model_config_iri mc:hasModule ?module}.
-  OPTIONAL{?_model_config_iri mc:hasProcess ?process}.
-  OPTIONAL{?_model_config_iri mc:hasCAG ?cag}.
+  ?_modelConfig_iri a mc:ModelConfiguration;
+    rdfs:label ?label.
+  OPTIONAL{?_modelConfig_iri dc:description ?desc}.
+  OPTIONAL{?_modelConfig_iri mc:hasInput ?input}.
+  OPTIONAL{?_modelConfig_iri mc:hasOutput ?output}.
+  OPTIONAL{?_modelConfig_iri mc:hasModule ?module}.
+  OPTIONAL{?_modelConfig_iri mc:hasProcess ?process}.
+  OPTIONAL{?_modelConfig_iri mc:hasCAG ?cag}.
   OPTIONAL{
-    ?_model_config_iri mc:hasTimeInterval ?ti.
+    ?_modelConfig_iri mc:hasTimeInterval ?ti.
     ?ti mc:usesUnit ?tIUnits;
         mc:hasValue ?tIValue.
   }.
-}GROUP By ?_model_config_iri ?label ?desc ?cag ?tIUnits ?tIValue
+}GROUP BY ?_modelConfig_iri ?label ?desc ?cag ?tIUnits ?tIValue
