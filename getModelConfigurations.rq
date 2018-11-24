@@ -4,12 +4,13 @@
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 PREFIX dc: <http://purl.org/dc/terms/>
+PREFIX os: <http://ontosoft.org/software#>
 
 SELECT ?model_config ?label ?desc ?modelVersion ?model
 WHERE {
   ?model_config a mc:ModelConfiguration.
   ?model_config rdfs:label ?label.
   OPTIONAL{?model_config dc:description ?desc}.
-  ?model mc:hasVersion ?modelVersion.
+  ?model os:hasSoftwareVersion ?modelVersion.
   ?modelVersion mc:hasConfiguration ?model_config.
 }

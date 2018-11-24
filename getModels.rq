@@ -5,6 +5,7 @@
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 PREFIX dc: <http://purl.org/dc/terms/>
+PREFIX os: <http://ontosoft.org/software#>
 
 SELECT ?model ?label ?desc (GROUP_CONCAT(DISTINCT ?cat;SEPARATOR=', ') AS ?categories) (GROUP_CONCAT(DISTINCT ?v;SEPARATOR=', ') AS ?versions)
 WHERE {
@@ -12,5 +13,5 @@ WHERE {
   ?model rdfs:label ?label.
   OPTIONAL{?model dc:description ?desc}.
   OPTIONAL{?model mc:hasModelCategory ?cat}.
-  OPTIONAL{?model mc:hasVersion ?v}.
+  OPTIONAL{?model os:hasSoftwareVersion ?v}.
 }group by ?model ?label ?desc

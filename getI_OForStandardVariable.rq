@@ -5,13 +5,14 @@
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
+PREFIX os: <http://ontosoft.org/software#>
 
 SELECT DISTINCT ?io ?config ?version ?model
 WHERE {
   ?io a mc:DatasetSpecification.
   ?io mc:hasPresentation ?presentation.
   ?presentation mc:hasStandardVariable ?_std_string.
-  ?model mc:hasVersion ?modelVersion.
+  ?model os:hasSoftwareVersion ?modelVersion.
   ?modelVersion mc:hasConfiguration ?model_config.
   {  
   	?model_config mc:hasInput ?io.

@@ -5,11 +5,12 @@
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
+PREFIX os: <http://ontosoft.org/software#>
 
 SELECT ?version ?config (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables)
 WHERE {
   ?_model_iri a mc:Model.
-  ?_model_iri mc:hasVersion ?version.
+  ?_model_iri os:hasSoftwareVersion ?version.
   ?version mc:hasConfiguration ?config.
   ?config mc:hasInput ?input.
   ?config mc:hasOutput ?output.
