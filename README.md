@@ -17,7 +17,7 @@ GRLC REST APU spec available at: http://ontosoft.isi.edu:8001/api/KnowledgeCaptu
 
 # List of queries supported by the API:
 
-* (done) getConfigI_OVariablesAndStandardNames[iri:ModelConfiguration]: Given a model configuration URI, this query returns the inputs/outputs and their corresponding variable presentations and standard names.
+* (done) getConfigI_OVariablesAndStandardNames[iri:ModelConfiguration]: Given a model configuration URI, this query returns the inputs/outputs and their corresponding variable presentations, standard names and units.
 * (done) getI_OForStandardVariable[string:Variable]: Given a standard name, this query returns which input, output, configuration, version and model refers to it.
 * (done) getI_OVariablesAndUnits[iri:Input/Output]: returns the variablePresentations associated to the provided input/output, and their units.
 * (done) getModelCategories: Query that returns all available model categories.
