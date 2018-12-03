@@ -1,17 +1,18 @@
 #+ method: GET
 
-#+ summary: Query that returns a label, description, category and versions of each model
+#+ summary: Query that returns a label, description, documentation, category and versions of each model
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 PREFIX dc: <http://purl.org/dc/terms/>
 PREFIX os: <http://ontosoft.org/software#>
 
-SELECT ?model ?label ?desc (GROUP_CONCAT(DISTINCT ?cat;SEPARATOR=', ') AS ?categories) (GROUP_CONCAT(DISTINCT ?v;SEPARATOR=', ') AS ?versions)
+SELECT ?model ?label ?desc ?doc (GROUP_CONCAT(DISTINCT ?cat;SEPARATOR=', ') AS ?categories) (GROUP_CONCAT(DISTINCT ?v;SEPARATOR=', ') AS ?versions)
 WHERE {
   ?model a mc:Model.
   ?model rdfs:label ?label.
   OPTIONAL{?model dc:description ?desc}.
   OPTIONAL{?model mc:hasModelCategory ?cat}.
   OPTIONAL{?model os:hasSoftwareVersion ?v}.
-}group by ?model ?label ?desc
+  OPTIONAL{?model os:hasDocumentation ?doc}.
+}group by ?model ?label ?desc ?doc
