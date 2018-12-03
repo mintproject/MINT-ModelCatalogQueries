@@ -12,6 +12,6 @@ WHERE {
   ?_model_iri a mc:Model.
   ?_model_iri os:hasSoftwareVersion ?version.
   ?version mc:hasConfiguration ?config.
-  ?config mc:hasInput ?input.
-  ?config mc:hasOutput ?output.
+  OPTIONAL{?config mc:hasInput ?input.}.
+  OPTIONAL{?config mc:hasOutput ?output.}.
 }group by ?version ?config
