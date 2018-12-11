@@ -14,6 +14,6 @@ WHERE {
   }
   ?_config_iri ?prop ?io.
   ?io model:hasPresentation ?vp.
-  ?vp model:hasStandardVariable ?st.
+  OPTIONAL {?vp model:hasStandardVariable ?st.}
   OPTIONAL {?vp model:usesUnit ?units.}
 }
