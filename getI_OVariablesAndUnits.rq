@@ -1,11 +1,19 @@
 #+ method: GET
-#+ summary: Query that returns returns the variablePresentations associated to the provided input/output, and their units.
+#+ summary: Query that returns returns the variablePresentations associated to the provided input/output, and their units. Additionally, this query returns the variable presentation label, description, long name, short name and standard variable.
 #+ defaults:
 #+   - io: https://w3id.org/mint/instance#pihm_forc
 
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
-SELECT distinct ?vp ?unit
+PREFIX dc: <http://purl.org/dc/terms/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT distinct ?vp ?label ?shortName ?longName ?description ?unit ?sn
 WHERE {
   ?_io_iri mc:hasPresentation ?vp.
   ?vp mc:usesUnit ?unit.
+  ?vp rdfs:label ?label.
+  OPTIONAL{?vp dc:description ?description.}.
+  OPTIONAL{?vp mc:hasLongName ?longName.}.
+  OPTIONAL{?vp mc:hasShortName ?shortName.}.
+  OPTIONAL{?vp mc:hasStandardVariable ?sn.}.
 }

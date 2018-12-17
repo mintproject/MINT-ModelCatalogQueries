@@ -6,12 +6,14 @@
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 PREFIX os: <http://ontosoft.org/software#>
+PREFIX dc: <http://purl.org/dc/terms/>
 
-SELECT ?version ?config (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables)
+SELECT ?version ?config ?configDesc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_files) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_files)
 WHERE {
   ?_model_iri a mc:Model.
   ?_model_iri os:hasSoftwareVersion ?version.
   ?version mc:hasConfiguration ?config.
+  OPTIONAL{?config dc:description ?configDesc.}.
   OPTIONAL{?config mc:hasInput ?input.}.
   OPTIONAL{?config mc:hasOutput ?output.}.
-}group by ?version ?config
+}group by ?version ?config ?configDesc
