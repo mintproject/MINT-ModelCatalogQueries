@@ -3,11 +3,12 @@
 #+ summary: Query that returns a list of all available configurations, their inputs files and output files.
 
 PREFIX model: <https://w3id.org/mint/modelCatalog#>
-SELECT ?config
+SELECT ?config ?compLoc
 (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables)
 (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables)
 WHERE {
   ?config a model:ModelConfiguration.
+  OPTIONAL{?config model:hasComponentLocation ?compLoc}.
   ?config model:hasInput ?input.
   ?config model:hasOutput ?output.
 }

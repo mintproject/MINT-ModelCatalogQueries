@@ -7,10 +7,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 PREFIX dc: <http://purl.org/dc/terms/>
 
-SELECT ?label ?desc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables) (GROUP_CONCAT(DISTINCT ?module;SEPARATOR=', ') AS ?modules) (GROUP_CONCAT(DISTINCT ?process;SEPARATOR=', ') AS ?processes) ?cag ?tIUnits ?tIValue
+SELECT ?label ?compLoc ?desc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables) (GROUP_CONCAT(DISTINCT ?module;SEPARATOR=', ') AS ?modules) (GROUP_CONCAT(DISTINCT ?process;SEPARATOR=', ') AS ?processes) ?cag ?tIUnits ?tIValue
 WHERE {
   ?_modelConfig_iri a mc:ModelConfiguration;
     rdfs:label ?label.
+  OPTIONAL{?_modelConfig_iri mc:hasComponentLocation ?compLoc}.
   OPTIONAL{?_modelConfig_iri dc:description ?desc}.
   OPTIONAL{?_modelConfig_iri mc:hasInput ?input}.
   OPTIONAL{?_modelConfig_iri mc:hasOutput ?output}.
