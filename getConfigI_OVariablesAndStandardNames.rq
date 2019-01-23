@@ -3,7 +3,9 @@
 #+ defaults:
 #+   - config: https://w3id.org/mint/instance#pihm_cfg_simple2
 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX model: <https://w3id.org/mint/modelCatalog#>
+
 SELECT  DISTINCT  ?prop ?io ?type ?vp ?st ?units
 WHERE {
   {
