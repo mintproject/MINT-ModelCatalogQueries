@@ -17,4 +17,4 @@ WHERE {
   OPTIONAL{?config dc:description ?configDesc.}.
   OPTIONAL{?config mc:hasInput ?input.}.
   OPTIONAL{?config mc:hasOutput ?output.}.
-}group by ?version ?config ?configDesc
+}group by ?version ?config ?configDesc ?compLoc
