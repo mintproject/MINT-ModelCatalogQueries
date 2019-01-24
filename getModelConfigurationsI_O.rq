@@ -12,4 +12,4 @@ WHERE {
   ?config model:hasInput ?input.
   ?config model:hasOutput ?output.
 }
-GROUP BY ?config ?comLoc
+GROUP BY ?config ?compLoc
