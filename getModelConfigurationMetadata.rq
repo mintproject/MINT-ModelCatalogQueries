@@ -23,4 +23,4 @@ WHERE {
     ?ti mc:usesUnit ?tIUnits;
         mc:hasValue ?tIValue.
   }.
-}GROUP BY ?label ?desc ?cag ?tIUnits ?tIValue
+}GROUP BY ?label ?desc ?cag ?tIUnits ?tIValue ?compLoc
