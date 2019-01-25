@@ -5,11 +5,17 @@
 PREFIX model: <https://w3id.org/mint/modelCatalog#>
 SELECT ?config ?compLoc
 (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables)
+(GROUP_CONCAT(DISTINCT ?typei;SEPARATOR=', ') AS ?input_variable_types)
 (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables)
+(GROUP_CONCAT(DISTINCT ?typeo;SEPARATOR=', ') AS ?output_variable_types)
 WHERE {
   ?config a model:ModelConfiguration.
   OPTIONAL{?config model:hasComponentLocation ?compLoc}.
   ?config model:hasInput ?input.
+  ?input a ?typei.
+  FILTER(?typei != model:DatasetSpecification).
   ?config model:hasOutput ?output.
+  ?output a ?typeo.
+  FILTER(?typeo != model:DatasetSpecification).
 }
 GROUP BY ?config ?compLoc
