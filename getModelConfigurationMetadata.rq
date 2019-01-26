@@ -1,7 +1,7 @@
 #+ method: GET
 #+ summary: Query that returns all metadata of a configuration, including the model version it belongs to, its label, description, inputs, outputs, modules, processes, time step (unit and value) and CAG id associated to it.
 #+ defaults:
-#+   - modelConfig: https://w3id.org/mint/instance#pihm_cfg_simple
+#+   - modelConfig: https://w3id.org/mint/instance/pihm_cfg
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>

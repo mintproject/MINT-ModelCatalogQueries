@@ -1,7 +1,7 @@
 #+ method: GET
 #+ summary: Query that returns returns the variablePresentations associated to the provided input/output, and their units. Additionally, this query returns the variable presentation label, description, long name, short name and standard variable.
 #+ defaults:
-#+   - io: https://w3id.org/mint/instance#pihm_forc
+#+   - io: https://w3id.org/mint/instance/pihm_forc
 
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 PREFIX dc: <http://purl.org/dc/terms/>

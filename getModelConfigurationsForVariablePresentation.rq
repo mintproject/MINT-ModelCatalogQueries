@@ -1,7 +1,7 @@
 #+ method: GET
 #+ summary: Query that given a variable presentation, returns the models, versions and configurations which use or produce that variable. The query also retrieves whether the variable is used as an input or output.
 #+ defaults:
-#+   - var: https://w3id.org/mint/instance#DSSAT_SRAD
+#+   - var: https://w3id.org/mint/instance/DSSAT_SRAD
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>

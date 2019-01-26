@@ -1,7 +1,7 @@
 #+ method: GET
 #+ summary: Query that returns a list of the available configurations, input variables and output variables given a certain model ?_model
 #+ defaults:
-#+   - model: https://w3id.org/mint/instance#TOPOFLOW
+#+   - model: https://w3id.org/mint/instance/TOPOFLOW
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>

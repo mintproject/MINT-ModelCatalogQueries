@@ -1,7 +1,7 @@
 #+ method: GET
 #+ summary: query that retrieves all metadata from a target resource ?_mv
 #+ defaults:
-#+   - mv: https://w3id.org/mint/instance#TOPOFLOW
+#+   - mv: https://w3id.org/mint/instance/TOPOFLOW
 
 SELECT ?prop ?value
 WHERE {
