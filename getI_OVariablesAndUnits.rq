@@ -10,7 +10,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT distinct ?vp ?label ?shortName ?longName ?description ?unit ?sn
 WHERE {
   ?_io_iri mc:hasPresentation ?vp.
-  ?vp mc:usesUnit ?unit.
+  OPTIONAL{?vp mc:usesUnit ?unit.}.
   ?vp rdfs:label ?label.
   OPTIONAL{?vp dc:description ?description.}.
   OPTIONAL{?vp mc:hasLongName ?longName.}.
