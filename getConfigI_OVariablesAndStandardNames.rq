@@ -1,9 +1,8 @@
 #+ method: GET
 #+ summary: Given a model configuration URI, this query returns the inputs/outputs and their data types, corresponding variable presentations, standard names and units.
 #+ defaults:
-#+   - config: https://w3id.org/mint/instance/pihm_cfg
+#+   - config: https://w3id.org/mint/instance/pihm
 
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX model: <https://w3id.org/mint/modelCatalog#>
 
 SELECT  DISTINCT  ?prop ?io ?format ?type ?vp ?st ?units
@@ -16,7 +15,7 @@ WHERE {
   }
   ?_config_iri ?prop ?io.
   OPTIONAL {?io model:hasFormat ?format}
-  ?io rdf:type ?type.
+  ?io a ?type.
   FILTER(?type != model:DatasetSpecification).
   ?io model:hasPresentation ?vp.
   OPTIONAL {?vp model:hasStandardVariable ?st.}

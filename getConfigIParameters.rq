@@ -1,0 +1,15 @@
+#+ method: GET
+#+ summary: Given a model configuration URI, this query returns the parameters and their default values.
+#+ defaults:
+#+   - config: https://w3id.org/mint/instance/pihm
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX model: <https://w3id.org/mint/modelCatalog#>
+
+SELECT  DISTINCT  ?p ?paramlabel ?defaultvalue ?ptype
+WHERE {
+  ?_config_iri model:hasParameter ?p.
+  ?p rdfs:label ?paramlabel.
+  OPTIONAL {?p model:hasDefaultValue ?defaultvalue.}
+  OPTIONAL {?p model:hasDataType ?ptype.}
+}
