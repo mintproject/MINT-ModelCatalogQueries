@@ -14,10 +14,9 @@ WHERE {
     ?_config_iri model:hasOutput ?io.
   }
   ?_config_iri ?prop ?io.
-  OPTIONAL {?io model:hasFormat ?format}
+   OPTIONAL {?io model:hasFormat ?format}
   ?io a ?type.
   FILTER(?type != model:DatasetSpecification).
-  ?io model:hasPresentation ?vp.
-  OPTIONAL {?vp model:hasStandardVariable ?st.}
-  OPTIONAL {?vp model:usesUnit ?units.}
+  OPTIONAL {?io model:hasPresentation ?vp.?vp model:hasStandardVariable ?st.}
+  OPTIONAL {?io model:hasPresentation ?vp.?vp model:usesUnit ?units.}
 }
