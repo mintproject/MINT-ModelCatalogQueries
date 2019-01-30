@@ -5,7 +5,7 @@
 
 PREFIX model: <https://w3id.org/mint/modelCatalog#>
 
-SELECT  DISTINCT  ?prop ?io ?format ?type ?vp ?st ?units
+SELECT  DISTINCT  ?prop ?io ?format ?type ?dim ?vp ?st ?units
 WHERE {
   {
     ?_config_iri model:hasInput ?io.
@@ -14,7 +14,8 @@ WHERE {
     ?_config_iri model:hasOutput ?io.
   }
   ?_config_iri ?prop ?io.
-   OPTIONAL {?io model:hasFormat ?format}
+  OPTIONAL {?io model:hasFormat ?format}
+  OPTIONAL {?io model:hasDimensionality ?dim}
   ?io a ?type.
   FILTER(?type != model:DatasetSpecification).
   OPTIONAL {?io model:hasPresentation ?vp.?vp model:hasStandardVariable ?st.}
