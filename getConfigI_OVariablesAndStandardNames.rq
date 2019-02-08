@@ -20,6 +20,7 @@ WHERE {
   ?io a ?type.
   ?io rdfs:label ?iolabel.
   FILTER(?type != model:DatasetSpecification).
+  FILTER(?type != model:VariablePresentation ).  
   OPTIONAL {?io model:hasPresentation ?vp.?vp model:hasStandardVariable ?st.}
   OPTIONAL {?io model:hasPresentation ?vp.?vp model:usesUnit ?units.}
 }
