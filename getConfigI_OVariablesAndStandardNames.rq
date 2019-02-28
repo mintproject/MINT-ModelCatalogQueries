@@ -23,4 +23,3 @@ WHERE {
   OPTIONAL {?io model:hasPresentation ?vp.?vp model:hasStandardVariable ?st.}
   OPTIONAL {?io model:hasPresentation ?vp.?vp model:usesUnit ?units.}
 }
-# Some comment
