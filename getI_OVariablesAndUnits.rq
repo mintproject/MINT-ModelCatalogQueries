@@ -7,7 +7,7 @@ PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 PREFIX dc: <http://purl.org/dc/terms/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT distinct ?vp ?label ?shortName ?longName ?description ?unit ?sn
+SELECT distinct ?vp ?label ?shortName ?longName ?description ?unit ?sn ?rl
 WHERE {
   ?_io_iri mc:hasPresentation ?vp.
   OPTIONAL{?vp mc:usesUnit ?unit.}.
@@ -16,4 +16,5 @@ WHERE {
   OPTIONAL{?vp mc:hasLongName ?longName.}.
   OPTIONAL{?vp mc:hasShortName ?shortName.}.
   OPTIONAL{?vp mc:hasStandardVariable ?sn.}.
+  OPTIONAL{?vp mc:hasRelevanceLevel ?rl.}.
 }

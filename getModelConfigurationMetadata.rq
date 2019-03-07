@@ -1,5 +1,5 @@
 #+ method: GET
-#+ summary: Query that returns all metadata of a configuration, including the model version it belongs to, its label, description, inputs, outputs, modules, processes, time step (unit and value) and CAG id associated to it.
+#+ summary: Query that returns all metadata of a configuration, including the model version it belongs to, its label, description, inputs, outputs, modules, processes, time step (unit and value), constraints and CAG id associated to it.
 #+ defaults:
 #+   - modelConfig: https://w3id.org/mint/instance/pihm
 
@@ -7,12 +7,13 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 PREFIX dc: <http://purl.org/dc/terms/>
 
-SELECT ?label ?compLoc ?desc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables) (GROUP_CONCAT(DISTINCT ?module;SEPARATOR=', ') AS ?modules) (GROUP_CONCAT(DISTINCT ?process;SEPARATOR=', ') AS ?processes) ?cag ?tIUnits ?tIValue
+SELECT ?label ?compLoc ?desc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables) (GROUP_CONCAT(DISTINCT ?module;SEPARATOR=', ') AS ?modules) (GROUP_CONCAT(DISTINCT ?process;SEPARATOR=', ') AS ?processes) (GROUP_CONCAT(DISTINCT ?c;SEPARATOR=', ') AS ?constraints) ?cag ?tIUnits ?tIValue
 WHERE {
   ?_modelConfig_iri a mc:ModelConfiguration;
     rdfs:label ?label.
   OPTIONAL{?_modelConfig_iri mc:hasComponentLocation ?compLoc}.
   OPTIONAL{?_modelConfig_iri dc:description ?desc}.
+  OPTIONAL{?_modelConfig_iri mc:hasConstraint ?c}.
   OPTIONAL{?_modelConfig_iri mc:hasInput ?input}.
   OPTIONAL{?_modelConfig_iri mc:hasOutput ?output}.
   OPTIONAL{?_modelConfig_iri mc:hasModule ?module}.

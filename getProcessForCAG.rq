@@ -1,14 +1,14 @@
 #+ method: GET
-#+ summary: Given a CAG ?_cag, this query returns all the processes associated with it (and their dependencies).
+#+ summary: Given a CAG ?_cag, this query returns all the entities associated with it (and their dependencies).
 #+ defaults:
 #+   - cag: https://w3id.org/mint/instance/cycles
 
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 
-SELECT ?process
+SELECT ?e
 (GROUP_CONCAT(DISTINCT ?influences;SEPARATOR=', ') AS ?process_influences)
 WHERE {
-  ?_cag_iri mc:hasPart ?process.
-  ?process mc:influences ?influences.
+  ?_cag_iri mc:hasPart ?e.
+  ?e mc:influences ?influences.
 }
-GROUP BY ?process
+GROUP BY ?e
