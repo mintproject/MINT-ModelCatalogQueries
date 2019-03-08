@@ -21,6 +21,6 @@ WHERE {
   ?io rdfs:label ?iolabel.
   FILTER(?type != model:DatasetSpecification).
   OPTIONAL {?io model:hasPresentation ?vp.?vp model:hasStandardVariable ?st.}
-  OPTIONAL {?io model:hasPresentation ?vp.?vp model:usesUnit ?units.}
+  OPTIONAL {?io model:hasPresentation ?vp.?vp model:usesUnit ?u. ?u rdfs:label ?units.}
   OPTIONAL {?io model:hasPresentation ?vp.?vp model:hasRelevanceLevel ?rl.}
 }

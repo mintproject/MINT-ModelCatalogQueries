@@ -21,7 +21,8 @@ WHERE {
   OPTIONAL{?_modelConfig_iri mc:hasCAG ?cag}.
   OPTIONAL{
     ?_modelConfig_iri mc:hasTimeInterval ?ti.
-    ?ti mc:usesUnit ?tIUnits;
+    ?ti mc:usesUnit ?tu;
         mc:hasValue ?tIValue.
+    ?tu rdfs:label ?tIUnits.
   }.
 }GROUP BY ?label ?desc ?cag ?tIUnits ?tIValue ?compLoc
