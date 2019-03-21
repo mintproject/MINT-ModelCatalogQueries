@@ -1,1 +1,1 @@
-http://ontosoft.isi.edu:3030/ds/query
+https://endpoint.mint.isi.edu/ds/query

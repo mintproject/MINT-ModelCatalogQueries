@@ -4,12 +4,11 @@ This document separates a set of interesting queries that are useful to explore 
 
 These queries are exposed as a REST API through the GRLC (garlic) application.
 
-SPARQL Endpoint for the model catalog available at: http://ontosoft.isi.edu:3030/dataset.html
+SPARQL Endpoint for the model catalog available at: [https://endpoint.mint.isi.edu](https://endpoint.mint.isi.edu/dataset.html)
 
-GRLC REST API documentation available at: http://ontosoft.isi.edu:8001/api/mintproject/MINT-ModelCatalogQueries
+GRLC REST API documentation available at: https://query.mint.isi.edu/api/mintproject/MINT-ModelCatalogQueries
 
-GRLC REST APU spec available at: http://ontosoft.isi.edu:8001/api/mintproject/MINT-ModelCatalogQueries/spec
-
+GRLC REST APU spec available at: https://query.mint.isi.edu/api/mintproject/MINT-ModelCatalogQueries/spec
 
 
 
