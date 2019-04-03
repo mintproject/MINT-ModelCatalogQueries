@@ -5,8 +5,9 @@
 
 PREFIX model: <https://w3id.org/mint/modelCatalog#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix dc: <http://purl.org/dc/terms/>
 
-SELECT  DISTINCT  ?prop ?io ?iolabel ?format ?type ?dim ?vp ?st ?units ?rl
+SELECT  DISTINCT  ?prop ?io ?iolabel ?ioDescription ?format ?type ?dim ?vp ?st ?units ?rl
 WHERE {
   {
     ?_config_iri model:hasInput ?io.
@@ -17,6 +18,7 @@ WHERE {
   ?_config_iri ?prop ?io.
   OPTIONAL {?io model:hasFormat ?format}
   OPTIONAL {?io model:hasDimensionality ?dim}
+  OPTIONAL {?io dc:description ?ioDescription}
   ?io a ?type.
   ?io rdfs:label ?iolabel.
   FILTER(?type != model:DatasetSpecification).
