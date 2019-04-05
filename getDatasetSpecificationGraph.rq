@@ -11,7 +11,7 @@ PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 
 CONSTRUCT {?s ?o ?p }
 WHERE { 
-  GRAPH <?_graph_iri> {
+  GRAPH <?_graph> {
     ?s a mc:DatasetSpecification .
     ?s ?o ?p
   }
