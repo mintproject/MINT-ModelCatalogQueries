@@ -1,0 +1,18 @@
+#+ summary: Gets a list of all dataset entities.
+#+ mime: application/ld+json
+#+ tags:
+#+   - ModelIngestion
+#+ method: GET
+#+ pagination: 50
+#+ defaults:
+#+   - graph: urn:x-arq:DefaultGraph
+
+PREFIX mc: <https://w3id.org/mint/modelCatalog#>
+
+CONSTRUCT {?s ?o ?p }
+WHERE { 
+  GRAPH <?_graph_iri> {
+    ?s a mc:DatasetSpecification .
+    ?s ?o ?p
+  }
+}
