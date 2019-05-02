@@ -1,5 +1,5 @@
 #+ method: GET
-#+ summary: Given a model configuration URI, this query returns the inputs/outputs and their data types, corresponding variable presentations, standard names, units and relevance level.
+#+ summary: Given a model configuration URI, this query returns the inputs/outputs and their data types, corresponding variable presentations, units and relevance level.
 #+ defaults:
 #+   - config: https://w3id.org/mint/instance/pihm
 

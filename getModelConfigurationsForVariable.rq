@@ -15,5 +15,6 @@ WHERE {
   OPTIONAL{?configuration mc:hasComponentLocation ?compLoc}.
   ?configuration mc:hasOutput ?output.
   ?output mc:hasPresentation ?vp.
-  ?vp mc:hasStandardVariable ?_std_string.
+  ?vp mc:hasStandardVariable ?sv.
+  ?sv rdfs:label ?_std_string.
 }

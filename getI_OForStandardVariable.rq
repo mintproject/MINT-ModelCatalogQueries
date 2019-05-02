@@ -13,7 +13,8 @@ WHERE {
   ?io rdf:type ?type.
   FILTER(?type != mc:DatasetSpecification).
   ?io mc:hasPresentation ?presentation.
-  ?presentation mc:hasStandardVariable ?_std_string.
+  ?presentation mc:hasStandardVariable ?sv.
+  ?sv rdfs:label ?_std_string.
   ?model os:hasSoftwareVersion ?modelVersion.
   ?modelVersion mc:hasConfiguration ?model_config.
   OPTIONAL{?model_config mc:hasComponentLocation ?compLoc}.

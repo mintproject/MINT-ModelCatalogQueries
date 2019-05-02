@@ -8,5 +8,5 @@ SELECT distinct ?v ?label ?sn
 WHERE {
   ?v a mc:VariablePresentation.
   ?v rdfs:label ?label.
-  OPTIONAL{?v mc:hasStandardVariable ?sn}
+  OPTIONAL{?v mc:hasStandardVariable ?sv. ?sv rdfs:label ?sn}
 }
