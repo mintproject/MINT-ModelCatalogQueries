@@ -1,0 +1,24 @@
+#+ method: GET
+#+ summary: Given a model configuration URI, this query returns the inputs/outputs and their data types, and descriptions.
+#+ defaults:
+#+   - config: https://w3id.org/mint/instance/pihm
+
+PREFIX model: <https://w3id.org/mint/modelCatalog#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix dc: <http://purl.org/dc/terms/>
+
+SELECT  DISTINCT  ?prop ?io ?iolabel ?ioDescription ?format ?type 
+WHERE {
+  {
+    ?_config_iri model:hasInput ?io.
+  }UNION
+  {
+    ?_config_iri model:hasOutput ?io.
+  }
+  ?_config_iri ?prop ?io.
+  OPTIONAL {?io model:hasFormat ?format}
+  OPTIONAL {?io dc:description ?ioDescription}
+  ?io a ?type.
+  ?io rdfs:label ?iolabel.
+  FILTER(?type != model:DatasetSpecification).
+}
