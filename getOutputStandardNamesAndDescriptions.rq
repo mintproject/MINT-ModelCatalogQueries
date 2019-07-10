@@ -5,9 +5,10 @@
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix mc: <https://w3id.org/mint/modelCatalog#>
 
-select ?snlabel ?snURI (GROUP_CONCAT(DISTINCT ?desc;SEPARATOR='-- ') as ?descriptions) where {
+select ?snlabel ?snURI (GROUP_CONCAT(DISTINCT ?long;SEPARATOR='-- ') as ?longNames) (GROUP_CONCAT(DISTINCT ?desc;SEPARATOR='-- ') as ?descriptions) where {
    ?ds mc:hasOutput ?out.
    ?out mc:hasPresentation ?p.
+   optional {?p mc:hasLongName ?long}.
    optional {?p <http://purl.org/dc/terms/description> ?desc}.
    ?p mc:hasStandardVariable ?snURI.
    ?snURI rdfs:label ?snlabel.
