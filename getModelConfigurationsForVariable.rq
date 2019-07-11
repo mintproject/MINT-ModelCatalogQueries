@@ -6,11 +6,13 @@
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX mc: <https://w3id.org/mint/modelCatalog#>
 PREFIX os: <http://ontosoft.org/software#>
+PREFIX dc: <http://purl.org/dc/terms/>
 
-SELECT DISTINCT ?model ?version ?configuration ?compLoc
+SELECT DISTINCT ?model ?desc ?version ?configuration ?compLoc
 WHERE {
   ?model a mc:Model.
   ?model os:hasSoftwareVersion ?version.
+  OPTIONAL{?model dc:description ?desc}.
   ?version mc:hasConfiguration ?configuration.
   OPTIONAL{?configuration mc:hasComponentLocation ?compLoc}.
   ?configuration mc:hasOutput ?output.
