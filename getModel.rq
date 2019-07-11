@@ -1,5 +1,5 @@
 #+ method: GET
-#+ summary: Query a model by the ?_label
+#+ summary: Match a model by text in the uri
 #+ defaults:
 #+   - label: WGEN
 
@@ -11,5 +11,5 @@ PREFIX os: <http://ontosoft.org/software#>
 SELECT ?model 
 WHERE {
   ?model a mc:Model.
-  ?model rdfs:label ?_label_string.
+  FILTER REGEX(str(?model), ?_label_string) 
 }
