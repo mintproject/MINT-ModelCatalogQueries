@@ -1,6 +1,6 @@
 #+ method: GET
-
-#+ summary: Query a model by the label
+#+ summary: Query a model by the ?_label
+#+ defaults:
 #+   - label: WGEN
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -11,5 +11,5 @@ PREFIX os: <http://ontosoft.org/software#>
 SELECT ?model 
 WHERE {
   ?model a mc:Model.
-  ?model rdfs:label ?_label_iri.
+  ?model rdfs:label ?_label_string.
 }
