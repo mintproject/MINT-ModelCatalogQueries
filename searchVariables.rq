@@ -18,5 +18,5 @@ select ?w ?desc where {
   {
     ?w a <http://www.geoscienceontology.org/svo/svu#Variable>.
   }
-  filter regex(str(?desc),?_text_string,"i")  
+  filter regex(str(?desc),?_text,"i")  
 }

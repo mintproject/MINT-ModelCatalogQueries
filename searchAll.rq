@@ -16,5 +16,5 @@ select ?w ?desc where {
   {
     ?w rdfs:label ?desc.
   }
-  filter regex(str(?desc),?_text_string,"i")  
+  filter regex(str(?desc),?_text,"i")  
 }

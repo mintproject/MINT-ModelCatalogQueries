@@ -12,5 +12,5 @@ select ?w ?desc where {
   VALUES ?property { dc:description rdfs:label }
   ?w ?property ?desc.
   ?w a mc:DatasetSpecification
-  filter regex(str(?desc),?_text_string,"i")  
+  filter regex(str(?desc),?_text,"i")  
 }
