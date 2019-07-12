@@ -1,0 +1,16 @@
+#+ method: GET
+#+ summary: Query that returns a text-based search on any label or description that matcher the input text. The text search is not case sensitive and not exact. The results return the matched description and the URI of the target entity
+
+#+ defaults:
+#+   - text: soil
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dc: <http://purl.org/dc/terms/>
+prefix mc: <https://w3id.org/mint/modelCatalog#>
+
+select ?w ?desc where {
+  VALUES ?property { dc:description rdfs:label }
+  ?w ?property ?desc.
+  ?w a mc:DatasetSpecification
+  filter regex(str(?desc),?_text_string,"i")  
+}
