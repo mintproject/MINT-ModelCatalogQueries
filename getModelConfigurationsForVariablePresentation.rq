@@ -1,18 +1,18 @@
 #+ method: GET
 #+ summary: Query that given a variable presentation, returns the models, versions and configurations which use or produce that variable. The query also retrieves whether the variable is used as an input or output.
 #+ defaults:
-#+   - var: https://w3id.org/mint/instance/DSSAT_SRAD
+#+   - var: https://w3id.org/okn/i/mint/DSSAT_SRAD
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX mc: <https://w3id.org/mint/modelCatalog#>
-PREFIX os: <http://ontosoft.org/software#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 
 SELECT DISTINCT ?model ?version ?isInput ?configuration ?compLoc
 WHERE {
-  ?model a mc:Model.
-  ?model os:hasSoftwareVersion ?version.
-  ?version mc:hasConfiguration ?configuration.
-  OPTIONAL{?configuration mc:hasComponentLocation ?compLoc}.
+  ?model a sdm:Model.
+  ?model sd:hasVersion ?version.
+  ?version sd:hasConfiguration ?configuration.
+  OPTIONAL{?configuration sd:hasComponentLocation ?compLoc}.
   ?configuration ?isInput ?io.
-  ?io mc:hasPresentation ?_var_iri.
+  ?io sd:hasPresentation ?_var_iri.
 }

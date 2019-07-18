@@ -1,20 +1,20 @@
 #+ method: GET
 #+ summary: This query returns the configurations compatible with input(s) of the given model configuration URI
 #+ defaults:
-#+   - config: https://w3id.org/mint/instance/pihm
+#+   - config: https://w3id.org/okn/i/mint/pihm-v2
 
-PREFIX model: <https://w3id.org/mint/modelCatalog#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX dct: <http://purl.org/dc/terms/>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 
 SELECT ?comp_config ?label ?description (GROUP_CONCAT(DISTINCT ?var;SEPARATOR=', ') AS ?comp_var)
 WHERE {
-  ?_config_iri model:hasInput/model:hasPresentation/model:hasStandardVariable ?var.
+  ?_config_iri sd:hasInput/sd:hasPresentation/sd:hasStandardVariable ?var.
 
-  ?comp_config a model:ModelConfiguration.
-  ?comp_config model:hasOutput/model:hasPresentation/model:hasStandardVariable ?var.
+  ?comp_config a sdm:ModelConfiguration.
+  ?comp_config sd:hasOutput/sd:hasPresentation/sd:hasStandardVariable ?var.
   ?comp_config rdfs:label ?label.
-  OPTIONAL{?comp_config dct:description ?description.}.
+  OPTIONAL{?comp_config sd:description ?description.}.
 
   FILTER(?comp_config != ?_config_iri)
 }GROUP BY ?comp_config ?label ?description

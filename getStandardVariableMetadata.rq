@@ -4,12 +4,11 @@
 #+   - std: land_surface__albedo
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX mc: <https://w3id.org/mint/modelCatalog#>
-PREFIX os: <http://ontosoft.org/software#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 
 SELECT DISTINCT ?p ?o
 WHERE {
-  ?vp mc:hasStandardVariable ?sv.
+  ?vp sd:hasStandardVariable ?sv.
   ?sv rdfs:label ?_std_string.
   ?sv ?p ?o 
 }

@@ -1,9 +1,9 @@
 #+ method: GET
 #+ summary: Given a CAG ?_cag, this query returns all the entities associated with it (and their dependencies).
 #+ defaults:
-#+   - cag: https://w3id.org/mint/instance/cycles
+#+   - cag: https://w3id.org/okn/i/mint/economic_aggregate_crop_supply_CAG_variables
 
-PREFIX mc: <https://w3id.org/mint/modelCatalog#>
+PREFIX mc: <https://w3id.org/okn/o/sdm#>
 
 SELECT ?e
 (GROUP_CONCAT(DISTINCT ?influences;SEPARATOR=', ') AS ?process_influences)

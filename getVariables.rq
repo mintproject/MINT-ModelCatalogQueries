@@ -1,12 +1,12 @@
 #+ method: GET
 #+ summary: Query that returns a list of the available variables, their labels and GSNs (if they have one)
 
-PREFIX mc: <https://w3id.org/mint/modelCatalog#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT distinct ?v ?label ?sn
 WHERE {
-  ?v a mc:VariablePresentation.
+  ?v a sd:VariablePresentation.
   ?v rdfs:label ?label.
-  OPTIONAL{?v mc:hasStandardVariable ?sv. ?sv rdfs:label ?sn}
+  OPTIONAL{?v sd:hasStandardVariable ?sv. ?sv rdfs:label ?sn}
 }

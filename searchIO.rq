@@ -5,12 +5,11 @@
 #+   - text: soil
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX dc: <http://purl.org/dc/terms/>
-prefix mc: <https://w3id.org/mint/modelCatalog#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 
 select ?w ?desc where {
-  VALUES ?property { dc:description rdfs:label }
+  VALUES ?property { sd:description rdfs:label }
   ?w ?property ?desc.
-  ?w a mc:DatasetSpecification
+  ?w a sd:DatasetSpecification
   filter regex(str(?desc),?_text,"i")  
 }

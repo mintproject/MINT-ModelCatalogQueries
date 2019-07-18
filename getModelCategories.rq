@@ -2,10 +2,10 @@
 
 #+ summary: Query that returns all available model categories
 
-PREFIX mc: <https://w3id.org/mint/modelCatalog#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
 
 SELECT distinct ?category
 WHERE {
-  ?model a mc:Model; 
-         mc:hasModelCategory ?category
+  ?model a sdm:Model; 
+         sdm:hasModelCategory ?category
 }

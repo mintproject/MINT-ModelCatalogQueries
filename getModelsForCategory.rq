@@ -3,9 +3,9 @@
 #+ defaults:
 #+   - cat: Hydrology
 
-PREFIX mc: <https://w3id.org/mint/modelCatalog#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
 SELECT ?model
 WHERE {
-  ?model a mc:Model.
-  ?model mc:hasModelCategory ?_cat_string.
+  ?model a sdm:Model.
+  ?model sdm:hasModelCategory ?_cat_string.
 }

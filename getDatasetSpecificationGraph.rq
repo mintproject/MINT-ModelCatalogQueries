@@ -7,12 +7,12 @@
 #+ defaults:
 #+   - graph: urn:x-arq:DefaultGraph
 
-PREFIX mc: <https://w3id.org/mint/modelCatalog#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 
 CONSTRUCT {?s ?o ?p }
 WHERE { 
   GRAPH <?_graph> {
-    ?s a mc:DatasetSpecification .
+    ?s a sd:DatasetSpecification .
     ?s ?o ?p
   }
 }

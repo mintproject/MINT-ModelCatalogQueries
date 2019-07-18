@@ -1,28 +1,28 @@
 #+ method: GET
 #+ summary: Query that returns all metadata of a configuration, including the model version it belongs to, its label, description, inputs, outputs, modules, processes, time step (unit and value), constraints and CAG id associated to it.
 #+ defaults:
-#+   - modelConfig: https://w3id.org/mint/instance/pihm
+#+   - modelConfig: https://w3id.org/okn/i/mint/pihm-v2
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX mc: <https://w3id.org/mint/modelCatalog#>
-PREFIX dc: <http://purl.org/dc/terms/>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 
 SELECT ?label ?compLoc ?desc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables) (GROUP_CONCAT(DISTINCT ?module;SEPARATOR=', ') AS ?modules) (GROUP_CONCAT(DISTINCT ?process;SEPARATOR=', ') AS ?processes) (GROUP_CONCAT(DISTINCT ?c;SEPARATOR=', ') AS ?constraints) ?cag ?tIUnits ?tIValue
 WHERE {
-  ?_modelConfig_iri a mc:ModelConfiguration;
+  ?_modelConfig_iri a sdm:ModelConfiguration;
     rdfs:label ?label.
-  OPTIONAL{?_modelConfig_iri mc:hasComponentLocation ?compLoc}.
-  OPTIONAL{?_modelConfig_iri dc:description ?desc}.
-  OPTIONAL{?_modelConfig_iri mc:hasConstraint ?c}.
-  OPTIONAL{?_modelConfig_iri mc:hasInput ?input}.
-  OPTIONAL{?_modelConfig_iri mc:hasOutput ?output}.
-  OPTIONAL{?_modelConfig_iri mc:hasModule ?module}.
-  OPTIONAL{?_modelConfig_iri mc:hasProcess ?process}.
-  OPTIONAL{?_modelConfig_iri mc:hasCAG ?cag}.
+  OPTIONAL{?_modelConfig_iri sd:hasComponentLocation ?compLoc}.
+  OPTIONAL{?_modelConfig_iri sd:description ?desc}.
+  OPTIONAL{?_modelConfig_iri sd:hasConstraint ?c}.
+  OPTIONAL{?_modelConfig_iri sd:hasInput ?input}.
+  OPTIONAL{?_modelConfig_iri sd:hasOutput ?output}.
+  OPTIONAL{?_modelConfig_iri sdm:hasModule ?module}.
+  OPTIONAL{?_modelConfig_iri sdm:hasProcess ?process}.
+  OPTIONAL{?_modelConfig_iri sdm:hasCAG ?cag}.
   OPTIONAL{
-    ?_modelConfig_iri mc:hasTimeInterval ?ti.
-    ?ti mc:usesUnit ?tu;
-        mc:hasValue ?tIValue.
+    ?_modelConfig_iri sdm:hasTimeInterval ?ti.
+    ?ti sd:usesUnit ?tu;
+        sd:hasValue ?tIValue.
     ?tu rdfs:label ?tIUnits.
   }.
 }GROUP BY ?label ?desc ?cag ?tIUnits ?tIValue ?compLoc

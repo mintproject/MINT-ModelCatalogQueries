@@ -3,13 +3,14 @@
 
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix mc: <https://w3id.org/mint/modelCatalog#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 
 select ?snlabel ?snURI ?snURI (GROUP_CONCAT(DISTINCT ?long;SEPARATOR='-- ') as ?longNames) (GROUP_CONCAT(DISTINCT ?desc;SEPARATOR='-- ') as ?descriptions) where {
-   ?ds mc:hasInput ?in.
-   ?in mc:hasPresentation ?p.
-   optional {?p mc:hasLongName ?long}.
-   optional {?p <http://purl.org/dc/terms/description> ?desc}.
-   ?p mc:hasStandardVariable ?snURI.
+   ?ds sd:hasInput ?in.
+   ?in sd:hasPresentation ?p.
+   optional {?p sd:hasLongName ?long}.
+   optional {?p sd:description ?desc}.
+   ?p sd:hasStandardVariable ?snURI.
    ?snURI rdfs:label ?snlabel.
 }group by ?snURI ?snlabel

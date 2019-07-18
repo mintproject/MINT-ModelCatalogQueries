@@ -5,12 +5,11 @@
 #+   - text: precipitation
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX dc: <http://purl.org/dc/terms/>
-prefix mc: <https://w3id.org/mint/modelCatalog#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 
 select ?w ?desc where {
   {
-   ?w dc:description ?desc.
+   ?w sd:description ?desc.
   }
    union
   {
