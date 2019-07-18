@@ -21,7 +21,7 @@ WHERE {
   OPTIONAL{?model sd:hasAssumption ?as}.
   OPTIONAL{?model sd:hasConstraint ?r}.
   OPTIONAL{?model sd:description ?desc}.
-  OPTIONAL{?model sd:hasModelCategory ?cat}.
+  OPTIONAL{?model sdm:hasModelCategory ?cat}.
   OPTIONAL{?model sd:hasVersion ?v}.
   OPTIONAL{?model sd:hasDocumentation ?doc}.
   OPTIONAL{?model sd:author ?auth}.
