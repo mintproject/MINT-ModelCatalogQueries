@@ -3,18 +3,54 @@
 #+ summary: Query that returns a label, description, documentation, assumptions, restrictions, category and versions of each model
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX mc: <https://w3id.org/mint/modelCatalog#>
-PREFIX dc: <http://purl.org/dc/terms/>
-PREFIX os: <http://ontosoft.org/software#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 
-SELECT ?model ?label ?desc ?doc (GROUP_CONCAT(DISTINCT ?as;SEPARATOR=', ') AS ?assumptions) (GROUP_CONCAT(DISTINCT ?r;SEPARATOR=', ') AS ?restrictions) (GROUP_CONCAT(DISTINCT ?cat;SEPARATOR=', ') AS ?categories) (GROUP_CONCAT(DISTINCT ?v;SEPARATOR=', ') AS ?versions)
+SELECT ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid
+(GROUP_CONCAT(DISTINCT ?as;SEPARATOR=', ') AS ?assumptions) (GROUP_CONCAT(DISTINCT ?r;SEPARATOR=', ') AS ?restrictions) (GROUP_CONCAT(DISTINCT ?cat;SEPARATOR=', ') AS ?categories) (GROUP_CONCAT(DISTINCT ?v;SEPARATOR=', ') AS ?versions)
+(GROUP_CONCAT(DISTINCT ?auth;SEPARATOR=', ') AS ?authors)
+(GROUP_CONCAT(DISTINCT ?cit;SEPARATOR=', ') AS ?citations)
+(GROUP_CONCAT(DISTINCT ?contrib;SEPARATOR=', ') AS ?contributors)
+(GROUP_CONCAT(DISTINCT ?sampleVis;SEPARATOR=', ') AS ?sampleVisualization)
+(GROUP_CONCAT(DISTINCT ?typicalD;SEPARATOR=', ') AS ?typicalDataSource)
+(GROUP_CONCAT(DISTINCT ?screenshot;SEPARATOR=', ') AS ?screenshots)
+(GROUP_CONCAT(DISTINCT ?explD;SEPARATOR=', ') AS ?explanationDiagrams)
 WHERE {
-  ?model a mc:Model.
+  ?model a sdm:Model.
   ?model rdfs:label ?label.
-  OPTIONAL{?model mc:hasAssumption ?as}.
-  OPTIONAL{?model mc:hasConstraint ?r}.
-  OPTIONAL{?model dc:description ?desc}.
-  OPTIONAL{?model mc:hasModelCategory ?cat}.
-  OPTIONAL{?model os:hasSoftwareVersion ?v}.
-  OPTIONAL{?model os:hasDocumentation ?doc}.
-}group by ?model ?label ?desc ?doc
+  OPTIONAL{?model sd:hasAssumption ?as}.
+  OPTIONAL{?model sd:hasConstraint ?r}.
+  OPTIONAL{?model sd:description ?desc}.
+  OPTIONAL{?model sd:hasModelCategory ?cat}.
+  OPTIONAL{?model sd:hasVersion ?v}.
+  OPTIONAL{?model sd:hasDocumentation ?doc}.
+  OPTIONAL{?model sd:author ?auth}.
+  OPTIONAL{?model sd:citation ?cit}.
+  OPTIONAL{?model sd:contributor ?contrib}.
+  OPTIONAL{?model sd:dateCreated ?dateC}.
+  OPTIONAL{?model sd:datePublished ?dateP}.
+  OPTIONAL{?model sd:fundingSource	 ?fundS}.
+  OPTIONAL{?model sd:hasContactPerson ?contactP}.
+  OPTIONAL{?model sd:hasDownloadURL ?downloadURL}.
+  OPTIONAL{?model sd:hasFAQ ?faq}.
+  OPTIONAL{?model sd:hasInstallationInstructions ?installInstr}.
+  OPTIONAL{?model sd:hasPurpose ?purpose}.
+  OPTIONAL{?model sd:hasSampleVisualization ?sampleVis}.
+  OPTIONAL{?model sd:hasSourceCode ?sourceC}.
+  OPTIONAL{?model sd:hasTypicalDataSource ?typicalD}.
+  OPTIONAL{?model sd:keywords ?keywords}.
+  OPTIONAL{?model sd:logo ?logo}.
+  OPTIONAL{?model sd:memoryRequirements ?memReq}.
+  OPTIONAL{?model sd:operatingSystems ?os}.
+  OPTIONAL{?model sd:processorRequirements ?procReq}.
+  OPTIONAL{?model sd:publisher ?publisher}.
+  OPTIONAL{?model sd:referencePublication ?referenceP}.
+  OPTIONAL{?model sd:screenshot ?screenshot}.
+  OPTIONAL{?model sd:shortDescription ?shortDesc}.
+  OPTIONAL{?model sd:softwareRequirements ?softwareReq}.
+  OPTIONAL{?model sd:website ?web}.
+  OPTIONAL{?model sdm:hasEquation ?eq}.
+  OPTIONAL{?model sdm:hasGrid ?grid}.
+  OPTIONAL{?model sdm:hasExplanationDiagram ?explD}.
+    
+}group by ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid

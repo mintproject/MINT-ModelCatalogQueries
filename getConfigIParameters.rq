@@ -6,7 +6,7 @@
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-SELECT  DISTINCT  ?p ?paramlabel ?defaultvalue ?pdatatype ?ptype
+SELECT  DISTINCT  ?p ?paramlabel ?defaultvalue ?fixedValue ?pdatatype ?ptype
 WHERE {
   ?_config_iri sd:hasParameter ?p.
   ?p rdfs:label ?paramlabel.
@@ -14,4 +14,6 @@ WHERE {
   FILTER (?ptype != sd:Parameter)
   OPTIONAL {?p sd:hasDefaultValue ?defaultvalue.}
   OPTIONAL {?p sd:hasDataType ?pdatatype.}
+  OPTIONAL {?p sd:hasFixedValue ?value.
+            ?value <http://www.w3.org/ns/prov#value> ?fixedValue.}
 }
