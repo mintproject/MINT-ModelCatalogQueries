@@ -38,7 +38,7 @@ WHERE {
   OPTIONAL{?model sd:hasFAQ ?faq}.
   OPTIONAL{?model sd:hasInstallationInstructions ?installInstr}.
   OPTIONAL{?model sd:hasPurpose ?purpose}.
-  OPTIONAL{?model sd:hasSampleVisualization ?sampleVis}.
+  OPTIONAL{?model sd:hasSampleVisualization ?sample. ?sample <http://www.w3.org/ns/prov#value> ?sampleVis}.
   OPTIONAL{?model sd:hasSourceCode ?s.
            ?s sd:programmingLanguage ?pl.
            ?s sd:codeRepository ?sourceC}.
