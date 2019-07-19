@@ -6,7 +6,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-SELECT ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid
+SELECT ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid ?modelType ?sourceC ?pl
 (GROUP_CONCAT(DISTINCT ?as;SEPARATOR=', ') AS ?assumptions) (GROUP_CONCAT(DISTINCT ?r;SEPARATOR=', ') AS ?restrictions) (GROUP_CONCAT(DISTINCT ?cat;SEPARATOR=', ') AS ?categories) (GROUP_CONCAT(DISTINCT ?v;SEPARATOR=', ') AS ?versions)
 (GROUP_CONCAT(DISTINCT ?auth;SEPARATOR=', ') AS ?authors)
 (GROUP_CONCAT(DISTINCT ?cit;SEPARATOR=', ') AS ?citations)
@@ -18,13 +18,16 @@ SELECT ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq
 WHERE {
   ?model a sdm:Model.
   ?model rdfs:label ?label.
+  ?model a ?modelType.
+  FILTER(?modelType != sdm:Model)
   OPTIONAL{?model sd:hasAssumption ?as}.
   OPTIONAL{?model sd:hasConstraint ?r}.
   OPTIONAL{?model sd:description ?desc}.
   OPTIONAL{?model sdm:hasModelCategory ?cat}.
   OPTIONAL{?model sd:hasVersion ?v}.
   OPTIONAL{?model sd:hasDocumentation ?doc}.
-  OPTIONAL{?model sd:author ?auth}.
+  OPTIONAL{?model sd:author ?a.
+  		   ?a rdfs:label ?auth}.
   OPTIONAL{?model sd:citation ?cit}.
   OPTIONAL{?model sd:contributor ?contrib}.
   OPTIONAL{?model sd:dateCreated ?dateC}.
@@ -36,16 +39,19 @@ WHERE {
   OPTIONAL{?model sd:hasInstallationInstructions ?installInstr}.
   OPTIONAL{?model sd:hasPurpose ?purpose}.
   OPTIONAL{?model sd:hasSampleVisualization ?sampleVis}.
-  OPTIONAL{?model sd:hasSourceCode ?sourceC}.
+  OPTIONAL{?model sd:hasSourceCode ?s.
+           ?s sd:programmingLanguage ?pl.
+           ?s sd:codeRepository ?sourceC}.
   OPTIONAL{?model sd:hasTypicalDataSource ?typicalD}.
   OPTIONAL{?model sd:keywords ?keywords}.
-  OPTIONAL{?model sd:logo ?logo}.
+  OPTIONAL{?model sd:logo ?l. 
+  		   ?l <http://www.w3.org/ns/prov#value> ?logo}.
   OPTIONAL{?model sd:memoryRequirements ?memReq}.
   OPTIONAL{?model sd:operatingSystems ?os}.
   OPTIONAL{?model sd:processorRequirements ?procReq}.
   OPTIONAL{?model sd:publisher ?publisher}.
   OPTIONAL{?model sd:referencePublication ?referenceP}.
-  OPTIONAL{?model sd:screenshot ?screenshot}.
+  OPTIONAL{?model sd:screenshot ?scr}.
   OPTIONAL{?model sd:shortDescription ?shortDesc}.
   OPTIONAL{?model sd:softwareRequirements ?softwareReq}.
   OPTIONAL{?model sd:website ?web}.
@@ -53,4 +59,4 @@ WHERE {
   OPTIONAL{?model sdm:hasGrid ?grid}.
   OPTIONAL{?model sdm:hasExplanationDiagram ?explD}.
     
-}group by ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid
+}group by ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid ?modelType ?pl ?sourceC

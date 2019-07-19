@@ -1,0 +1,14 @@
+#+ method: GET
+#+ summary: Query that given a model returns its versions and configurations and calibrations. Results are not grouped because calibrations may belong only to certain configurations.
+#+ defaults:
+#+   - model: https://w3id.org/okn/i/mint/ECONOMIC_AGGREGATE_CROP_SUPPLY
+
+prefix sd: <https://w3id.org/okn/o/sd#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+
+SELECT distinct ?version ?config ?calibration
+WHERE {
+  ?_model_iri sd:hasVersion ?version.
+  ?version sd:hasConfiguration ?config.
+  OPTIONAL{?config sdm:hasCalibration ?calibration.}
+}

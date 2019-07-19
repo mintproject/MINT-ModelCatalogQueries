@@ -1,0 +1,17 @@
+#+ method: GET
+#+ summary: Query that given a resource such as model/model configuration, returns the screenshot metadata associated with it
+#+ defaults:
+#+   - v: https://w3id.org/okn/i/mint/CYCLES
+
+prefix sd: <https://w3id.org/okn/o/sd#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix prov: <http://www.w3.org/ns/prov#>
+
+SELECT distinct ?img ?label ?url ?desc ?source
+WHERE {
+  ?_v_iri sd:screenshot ?img .
+  ?img rdfs:label ?label.
+  ?img prov:value ?url.
+  OPTIONAL{?img sd:description ?desc}
+  OPTIONAL{?img prov:hadPrimarySource ?source}
+}

@@ -1,7 +1,7 @@
 #+ method: GET
 #+ summary: This query returns the configurations compatible with output(s) of the given model configuration URI
 #+ defaults:
-#+   - config: https://w3id.org/okn/i/mint/pihm
+#+   - config: https://w3id.org/okn/i/mint/pihm-v2
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
