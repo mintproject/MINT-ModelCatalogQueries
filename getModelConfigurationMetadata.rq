@@ -7,7 +7,8 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-SELECT ?label ?compLoc ?desc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables) (GROUP_CONCAT(DISTINCT ?module;SEPARATOR=', ') AS ?modules) (GROUP_CONCAT(DISTINCT ?process;SEPARATOR=', ') AS ?processes) (GROUP_CONCAT(DISTINCT ?c;SEPARATOR=', ') AS ?constraints) ?cag ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?paramAssignMethod 
+SELECT ?label ?compLoc ?desc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables) (GROUP_CONCAT(DISTINCT ?param;SEPARATOR=', ') AS ?parameters)(GROUP_CONCAT(DISTINCT ?module;SEPARATOR=', ') AS ?modules) (GROUP_CONCAT(DISTINCT ?process;SEPARATOR=', ') AS ?processes) (GROUP_CONCAT(DISTINCT ?c;SEPARATOR=', ') AS ?constraints) ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?paramAssignMethod
+(GROUP_CONCAT(DISTINCT ?cags;SEPARATOR=', ') AS ?cag)
 (GROUP_CONCAT(DISTINCT ?auth;SEPARATOR=', ') AS ?authors)
 (GROUP_CONCAT(DISTINCT ?cit;SEPARATOR=', ') AS ?citations)
 (GROUP_CONCAT(DISTINCT ?contrib;SEPARATOR=', ') AS ?contributors)
@@ -33,7 +34,7 @@ WHERE {
   OPTIONAL{?_modelConfig_iri sd:hasOutput ?output}.
   OPTIONAL{?_modelConfig_iri sdm:hasModule ?module}.
   OPTIONAL{?_modelConfig_iri sdm:hasProcess ?process}.
-  OPTIONAL{?_modelConfig_iri sdm:hasCausalDiagram ?cag}.
+  OPTIONAL{?_modelConfig_iri sdm:hasCausalDiagram ?cags}.
   OPTIONAL{
     ?_modelConfig_iri sdm:hasOutputTimeInterval ?ti.
     ?ti sd:usesUnit ?tu;
@@ -86,4 +87,4 @@ WHERE {
   OPTIONAL{?_modelConfig_iri sdm:hasSampleExecution ?sampleEx}
   OPTIONAL{?_modelConfig_iri sdm:hasSampleResult ?sampleRes}
   
-}GROUP BY ?label ?desc ?cag ?tIUnits ?tIValue ?compLoc ?cag ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?paramAssignMethod
+}GROUP BY ?label ?desc ?tIUnits ?tIValue ?compLoc ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?paramAssignMethod
