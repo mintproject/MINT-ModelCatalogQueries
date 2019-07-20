@@ -7,7 +7,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-SELECT DISTINCT ?model ?desc ?version ?configuration ?compLoc
+SELECT DISTINCT ?model ?desc ?version ?calibration ?compLoc
 WHERE {
   ?model a sdm:Model.
   ?model sd:hasVersion ?version.
