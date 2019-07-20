@@ -32,8 +32,10 @@ WHERE {
   OPTIONAL{?model sd:contributor ?contrib}.
   OPTIONAL{?model sd:dateCreated ?dateC}.
   OPTIONAL{?model sd:datePublished ?dateP}.
-  OPTIONAL{?model sd:fundingSource	 ?fundS}.
-  OPTIONAL{?model sd:hasContactPerson ?contactP}.
+  OPTIONAL{?model sd:fundingSource	 ?fund.
+           ?fund rdfs:label ?fundS}.
+  OPTIONAL{?model sd:hasContactPerson ?contact. 
+            ?contact rdfs:label ?contactP}.
   OPTIONAL{?model sd:hasDownloadURL ?downloadURL}.
   OPTIONAL{?model sd:hasFAQ ?faq}.
   OPTIONAL{?model sd:hasInstallationInstructions ?installInstr}.
@@ -49,7 +51,8 @@ WHERE {
   OPTIONAL{?model sd:memoryRequirements ?memReq}.
   OPTIONAL{?model sd:operatingSystems ?os}.
   OPTIONAL{?model sd:processorRequirements ?procReq}.
-  OPTIONAL{?model sd:publisher ?publisher}.
+  OPTIONAL{?model sd:publisher ?pub.
+           ?pub rdfs:label ?publisher}.
   OPTIONAL{?model sd:referencePublication ?referenceP}.
   OPTIONAL{?model sd:screenshot ?scr}.
   OPTIONAL{?model sd:shortDescription ?shortDesc}.
