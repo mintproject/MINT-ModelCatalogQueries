@@ -7,12 +7,13 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-SELECT ?comp_config ?label ?description (GROUP_CONCAT(DISTINCT ?var;SEPARATOR=', ') AS ?comp_var)
+SELECT ?comp_config ?label ?description (GROUP_CONCAT(DISTINCT ?varLabel;SEPARATOR=', ') AS ?comp_var)
 WHERE {
   ?_config_iri sd:hasInput/sd:hasPresentation/sd:hasStandardVariable ?var.
 
   ?comp_config a sdm:ModelConfiguration.
   ?comp_config sd:hasOutput/sd:hasPresentation/sd:hasStandardVariable ?var.
+  ?var rdfs:label ?varLabel.
   ?comp_config rdfs:label ?label.
   OPTIONAL{?comp_config sd:description ?description.}.
 
