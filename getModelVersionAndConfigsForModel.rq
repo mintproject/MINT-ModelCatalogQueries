@@ -5,10 +5,14 @@
 
 prefix sd: <https://w3id.org/okn/o/sd#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT distinct ?version ?config ?calibration
+SELECT distinct ?version ?versionLabel ?config ?configLabel ?calibration ?calibrationLabel
 WHERE {
   ?_model_iri sd:hasVersion ?version.
+  ?version rdfs:label ?versionLabel.
   ?version sd:hasConfiguration ?config.
-  OPTIONAL{?config sdm:hasCalibration ?calibration.}
+  ?config rdfs:label ?configLabel.
+  OPTIONAL{?config sdm:hasCalibration ?calibration.
+  ?calibration rdfs:label ?calibrationLabel}
 }
