@@ -5,6 +5,7 @@ prefix sd: <https://w3id.org/okn/o/sd#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT distinct ?v ?label ?sn
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   ?v a sd:VariablePresentation.
   ?v rdfs:label ?label.

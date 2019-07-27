@@ -8,6 +8,7 @@ prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
 SELECT DISTINCT ?model ?version ?isInput ?configuration ?compLoc
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   ?model a sdm:Model.
   ?model sd:hasVersion ?version.

@@ -4,6 +4,7 @@
 #+   - mv: https://w3id.org/okn/i/mint/TOPOFLOW
 
 SELECT ?prop ?value
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   ?_mv_iri ?prop ?value
 }

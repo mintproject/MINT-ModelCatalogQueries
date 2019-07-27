@@ -10,6 +10,7 @@ SELECT ?config ?compLoc
 (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables)
 (GROUP_CONCAT(DISTINCT ?typeo;SEPARATOR=', ') AS ?output_variable_types)
 (GROUP_CONCAT(DISTINCT ?param;SEPARATOR=', ') AS ?parameters)
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   ?config a sdm:ModelConfiguration.
   OPTIONAL{?config sd:hasComponentLocation ?compLoc}.

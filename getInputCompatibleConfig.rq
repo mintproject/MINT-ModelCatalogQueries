@@ -8,6 +8,7 @@ prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
 SELECT ?comp_config ?label ?description (GROUP_CONCAT(DISTINCT ?varLabel;SEPARATOR=', ') AS ?comp_var)
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   ?_config_iri sd:hasInput/sd:hasPresentation/sd:hasStandardVariable ?var.
 

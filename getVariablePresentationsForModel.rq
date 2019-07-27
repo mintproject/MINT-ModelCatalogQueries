@@ -8,6 +8,7 @@ prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
 SELECT ?version ?config ?configDesc ?compLoc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_files) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_files)
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   ?_model_iri a sdm:Model.
   ?_model_iri sd:hasVersion ?version.

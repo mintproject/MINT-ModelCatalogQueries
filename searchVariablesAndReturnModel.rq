@@ -8,7 +8,9 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-select distinct ?w ?desc ?model ?modelV ?c where {
+select distinct ?w ?desc ?model ?modelV ?c 
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
+where {
   VALUES ?property { sd:description rdfs:label }
   ?w ?property ?desc.
   ?model a sdm:Model.

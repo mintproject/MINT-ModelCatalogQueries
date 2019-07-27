@@ -8,6 +8,7 @@ prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT distinct ?label ?type ?description ?dimension ?shape ?spatialRes ?coordinateSystem
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   ?_v_iri sdm:hasGrid ?grid .
   ?grid rdfs:label ?label.

@@ -6,6 +6,7 @@ prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
 SELECT ?model_config ?label ?compLoc ?desc ?modelVersion ?model
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   ?model_config a sdm:ModelConfiguration.
   ?model_config rdfs:label ?label.

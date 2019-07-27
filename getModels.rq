@@ -15,6 +15,7 @@ SELECT ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq
 (GROUP_CONCAT(DISTINCT ?typicalD;SEPARATOR=', ') AS ?typicalDataSource)
 (GROUP_CONCAT(DISTINCT ?screenshot;SEPARATOR=', ') AS ?screenshots)
 (GROUP_CONCAT(DISTINCT ?explD;SEPARATOR=', ') AS ?explanationDiagrams)
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   ?model a sdm:Model.
   ?model rdfs:label ?label.

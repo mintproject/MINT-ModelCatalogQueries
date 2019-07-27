@@ -6,7 +6,9 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-select ?snlabel ?snURI ?snURI (GROUP_CONCAT(DISTINCT ?long;SEPARATOR='-- ') as ?longNames) (GROUP_CONCAT(DISTINCT ?desc;SEPARATOR='-- ') as ?descriptions) where {
+select ?snlabel ?snURI ?snURI (GROUP_CONCAT(DISTINCT ?long;SEPARATOR='-- ') as ?longNames) (GROUP_CONCAT(DISTINCT ?desc;SEPARATOR='-- ') as ?descriptions) 
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
+where {
    ?ds sd:hasInput ?in.
    ?in sd:hasPresentation ?p.
    optional {?p sd:hasLongName ?long}.
