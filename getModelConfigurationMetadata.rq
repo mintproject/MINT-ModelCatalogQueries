@@ -39,7 +39,7 @@ WHERE {
   OPTIONAL{
     ?_modelConfig_iri sdm:hasOutputTimeInterval ?ti.
     ?ti sd:usesUnit ?tu;
-        sd:hasValue ?tIValue.
+        <http://www.w3.org/ns/prov#value> ?tIValue.
     ?tu rdfs:label ?tIUnits.
   }.
   OPTIONAL{?_modelConfig_iri sdm:hasGrid ?grid.
