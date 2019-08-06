@@ -7,7 +7,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-SELECT DISTINCT ?model ?desc ?version ?calibration ?compLoc
+SELECT DISTINCT ?model ?desc ?version ?configuration ?calibration ?compLoc
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   ?model a sdm:Model.
