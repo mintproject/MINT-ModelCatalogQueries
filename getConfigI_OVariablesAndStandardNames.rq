@@ -7,7 +7,7 @@ prefix sd: <https://w3id.org/okn/o/sd#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 
-SELECT  DISTINCT  ?prop ?io ?iolabel ?ioDescription ?format ?type ?dim ?fixedValueURL ?fixedValueDCId ?vp ?st ?units ?rl
+SELECT  DISTINCT  ?prop ?io ?iolabel ?ioDescription ?format ?type ?dim ?position ?fixedValueURL ?fixedValueDCId ?vp ?st ?units ?rl
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   {
@@ -20,6 +20,7 @@ WHERE {
   OPTIONAL {?io sd:hasFormat ?format}
   OPTIONAL {?io sd:hasDimensionality ?dim}
   OPTIONAL {?io sd:description ?ioDescription}
+  OPTIONAL {?io sd:position ?position.}
   OPTIONAL {?io sd:hasFixedValue ?fv.
             ?fv sd:dataCatalogIdentifier ?fixedValueDCId.
             ?fv <http://www.w3.org/ns/prov#value> ?fixedValueURL.}

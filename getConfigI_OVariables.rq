@@ -1,12 +1,12 @@
 #+ method: GET
-#+ summary: Given a model configuration URI, this query returns the inputs/outputs and their data types, and descriptions.
+#+ summary: Given a model configuration URI, this query returns the inputs/outputs and their data types, dimensionality, fixed values and descriptions.
 #+ defaults:
 #+   - config: https://w3id.org/okn/i/mint/pihm-v2
 
 prefix sd: <https://w3id.org/okn/o/sd#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT  DISTINCT  ?prop ?io ?iolabel ?ioDescription ?format ?type 
+SELECT  DISTINCT  ?prop ?io ?iolabel ?ioDescription ?format ?type ?dim ?fixedValueURL ?position
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   {
@@ -17,7 +17,11 @@ WHERE {
   }
   ?_config_iri ?prop ?io.
   OPTIONAL {?io sd:hasFormat ?format}
+  OPTIONAL {?io sd:position ?position.}
   OPTIONAL {?io sd:description ?ioDescription}
+  OPTIONAL {?io sd:hasDimensionality ?dim}
+  OPTIONAL {?io sd:hasFixedValue ?fv.
+            ?fv <http://www.w3.org/ns/prov#value> ?fixedValueURL.}
   ?io a ?type.
   ?io rdfs:label ?iolabel.
   FILTER(?type != sd:DatasetSpecification).
