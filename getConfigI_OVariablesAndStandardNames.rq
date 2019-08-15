@@ -21,7 +21,7 @@ WHERE {
   OPTIONAL {?io sd:hasDimensionality ?dim}
   OPTIONAL {?io sd:description ?ioDescription}
   OPTIONAL {?io sd:position ?position.}
-  OPTIONAL {?io sd:hasFixedValue ?fv.
+  OPTIONAL {?io sd:hasFixedResource ?fv.
             ?fv sd:dataCatalogIdentifier ?fixedValueDCId.
             ?fv <http://www.w3.org/ns/prov#value> ?fixedValueURL.}
   ?io a ?type.
