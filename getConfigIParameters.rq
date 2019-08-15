@@ -6,7 +6,7 @@
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-SELECT  DISTINCT  ?p ?paramlabel ?description ?defaultvalue ?fixedValue ?pdatatype ?ptype ?minVal ?maxVal ?position ?var
+SELECT  DISTINCT  ?p ?paramlabel ?description ?defaultvalue ?fixedValue ?pdatatype ?ptype ?minVal ?maxVal ?position ?var ?unit
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   ?_config_iri sd:hasParameter ?p.
@@ -21,4 +21,5 @@ WHERE {
   OPTIONAL {?p sd:hasFixedValue ?fixedValue.}
   OPTIONAL {?p sd:position ?position.}
   OPTIONAL {?p sd:adjustsVariable ?var}
+  OPTIONAL {?p sd:usesUnit ?unit}
 }
