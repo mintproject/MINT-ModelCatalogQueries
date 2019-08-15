@@ -1,0 +1,87 @@
+#+ method: GET
+#+ summary: Lighter version of the query that returns all metadata of a configuration. Inputs, outputs and parameters are not included.
+#+ defaults:
+#+   - modelConfig: https://w3id.org/okn/i/mint/pihm-v2
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+prefix sd: <https://w3id.org/okn/o/sd#>
+
+SELECT ?label ?compLoc ?desc (GROUP_CONCAT(DISTINCT ?processLabel;SEPARATOR=', ') AS ?processes) (GROUP_CONCAT(DISTINCT ?c;SEPARATOR=', ') AS ?constraints) ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?paramAssignMethod
+(GROUP_CONCAT(DISTINCT ?cags;SEPARATOR=', ') AS ?cag)
+(GROUP_CONCAT(DISTINCT ?auth;SEPARATOR=', ') AS ?authors)
+(GROUP_CONCAT(DISTINCT ?cit;SEPARATOR=', ') AS ?citations)
+(GROUP_CONCAT(DISTINCT ?contrib;SEPARATOR=', ') AS ?contributors)
+(GROUP_CONCAT(DISTINCT ?sampleVis;SEPARATOR=', ') AS ?sampleVisualization)
+(GROUP_CONCAT(DISTINCT ?typicalD;SEPARATOR=', ') AS ?typicalDataSource)
+(GROUP_CONCAT(DISTINCT ?screenshot;SEPARATOR=', ') AS ?screenshots)
+(GROUP_CONCAT(DISTINCT ?explD;SEPARATOR=', ') AS ?explanationDiagrams)
+(GROUP_CONCAT(DISTINCT ?adjVar;SEPARATOR=', ') AS ?adjustableVariables)
+(GROUP_CONCAT(DISTINCT ?targetVar;SEPARATOR=', ') AS ?targetVariables)
+(GROUP_CONCAT(DISTINCT ?calib;SEPARATOR=', ') AS ?calibrations)
+(GROUP_CONCAT(DISTINCT ?expertTuned;SEPARATOR=', ') AS ?expertTunedModels)
+(GROUP_CONCAT(DISTINCT ?visSoft;SEPARATOR=', ') AS ?visualizationSoftware)
+(GROUP_CONCAT(DISTINCT ?sampleEx;SEPARATOR=', ') AS ?sampleExecutions)
+(GROUP_CONCAT(DISTINCT ?sampleRes;SEPARATOR=', ') AS ?sampleResults)
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
+WHERE {
+  ?_modelConfig_iri a sdm:ModelConfiguration;
+    rdfs:label ?label.
+  OPTIONAL{?_modelConfig_iri sd:hasComponentLocation ?compLoc}.
+  OPTIONAL{?_modelConfig_iri sd:description ?desc}.
+  OPTIONAL{?_modelConfig_iri sd:hasConstraint ?c}.
+  OPTIONAL{?_modelConfig_iri sdm:hasProcess ?process. ?process rdfs:label ?processLabel}.
+  OPTIONAL{?_modelConfig_iri sdm:hasCausalDiagram ?cags}.
+  OPTIONAL{
+    ?_modelConfig_iri sdm:hasOutputTimeInterval ?ti.
+    ?ti sd:usesUnit ?tu;
+        <http://www.w3.org/ns/prov#value> ?tIValue.
+    ?tu rdfs:label ?tIUnits.
+  }.
+  OPTIONAL{?_modelConfig_iri sdm:hasGrid ?grid.
+           ?grid a ?gridType.
+           ?grid sdm:hasDimension ?gridDim.
+           ?grid sdm:hasSpatialResolution ?gridSpatial.
+           FILTER(?gridType != sdm:Grid)
+  }.
+  OPTIONAL{?_modelConfig_iri sd:author ?auth}.
+  OPTIONAL{?_modelConfig_iri sd:citation ?cit}.
+  OPTIONAL{?_modelConfig_iri sd:contributor ?contrib}.
+  OPTIONAL{?_modelConfig_iri sd:dateCreated ?dateC}.
+  OPTIONAL{?_modelConfig_iri sd:datePublished ?dateP}.
+  OPTIONAL{?_modelConfig_iri sd:fundingSource ?fundS}.
+  OPTIONAL{?_modelConfig_iri sd:hasContactPerson ?contactP}.
+  OPTIONAL{?_modelConfig_iri sd:hasDownloadURL ?downloadURL}.
+  OPTIONAL{?_modelConfig_iri sd:hasFAQ ?faq}.
+  OPTIONAL{?_modelConfig_iri sd:hasInstallationInstructions ?installInstr}.
+  OPTIONAL{?_modelConfig_iri sd:hasPurpose ?purpose}.
+  OPTIONAL{?_modelConfig_iri sd:hasSampleVisualization ?sampleVis}.
+  OPTIONAL{?_modelConfig_iri sd:hasSourceCode ?sourceC}.
+  OPTIONAL{?_modelConfig_iri sd:hasTypicalDataSource ?typicalD}.
+  OPTIONAL{?_modelConfig_iri sd:keywords ?keywords}.
+  OPTIONAL{?_modelConfig_iri sd:logo ?logo}.
+  OPTIONAL{?_modelConfig_iri sd:memoryRequirements ?memReq}.
+  OPTIONAL{?_modelConfig_iri sd:operatingSystems ?os}.
+  OPTIONAL{?_modelConfig_iri sd:processorRequirements ?procReq}.
+  OPTIONAL{?_modelConfig_iri sd:publisher ?publisher}.
+  OPTIONAL{?_modelConfig_iri sd:referencePublication ?referenceP}.
+  OPTIONAL{?_modelConfig_iri sd:screenshot ?screenshot}.
+  OPTIONAL{?_modelConfig_iri sd:shortDescription ?shortDesc}.
+  OPTIONAL{?_modelConfig_iri sd:softwareRequirements ?softwareReq}.
+  OPTIONAL{?_modelConfig_iri sd:website ?web}.
+  OPTIONAL{?_modelConfig_iri sdm:hasEquation ?eq}.
+  OPTIONAL{?_modelConfig_iri sdm:hasExplanationDiagram ?explD}
+  OPTIONAL{?_modelConfig_iri sdm:adjustableParameter ?adjVar}
+  OPTIONAL{?_modelConfig_iri sdm:calibrationMethod ?calibMethod}
+  OPTIONAL{?_modelConfig_iri sdm:calibrationTargetVariable ?targetVar}
+  OPTIONAL{?_modelConfig_iri sdm:hasCalibration ?calib}
+  OPTIONAL{?_modelConfig_iri sdm:hasExpertTunedModel ?expertTuned}
+  OPTIONAL{?_modelConfig_iri sdm:hasModelResultTable ?resultTable}
+  OPTIONAL{?_modelConfig_iri sdm:hasRegion ?region.
+           ?region rdfs:label ?regionName}
+  OPTIONAL{?_modelConfig_iri sdm:parameterAssignmentMethod ?paramAssignMethod}
+  OPTIONAL{?_modelConfig_iri sdm:compatibleVisualizationSoftware ?visSoft}
+  OPTIONAL{?_modelConfig_iri sdm:hasSampleExecution ?sampleEx}
+  OPTIONAL{?_modelConfig_iri sdm:hasSampleResult ?sampleRes}
+  
+}GROUP BY ?label ?desc ?tIUnits ?tIValue ?compLoc ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?paramAssignMethod
