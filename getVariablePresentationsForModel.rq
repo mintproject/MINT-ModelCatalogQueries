@@ -1,20 +1,20 @@
 #+ method: GET
 #+ summary: Query that returns a list of the available configurations, inputs and outputs given a certain model ?_model
 #+ defaults:
-#+   - model: https://w3id.org/mint/instance/TOPOFLOW
+#+   - model: https://w3id.org/okn/i/mint/PIHM
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX mc: <https://w3id.org/mint/modelCatalog#>
-PREFIX os: <http://ontosoft.org/software#>
-PREFIX dc: <http://purl.org/dc/terms/>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 
 SELECT ?version ?config ?configDesc ?compLoc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_files) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_files)
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
-  ?_model_iri a mc:Model.
-  ?_model_iri os:hasSoftwareVersion ?version.
-  ?version mc:hasConfiguration ?config.
-  OPTIONAL{?config mc:hasComponentLocation ?compLoc}.
-  OPTIONAL{?config dc:description ?configDesc.}.
-  OPTIONAL{?config mc:hasInput ?input.}.
-  OPTIONAL{?config mc:hasOutput ?output.}.
+  ?_model_iri a sdm:Model.
+  ?_model_iri sd:hasVersion ?version.
+  ?version sd:hasConfiguration ?config.
+  OPTIONAL{?config sd:hasComponentLocation ?compLoc}.
+  OPTIONAL{?config sd:description ?configDesc.}.
+  OPTIONAL{?config sd:hasInput ?input.}.
+  OPTIONAL{?config sd:hasOutput ?output.}.
 }group by ?version ?config ?configDesc ?compLoc

@@ -1,0 +1,16 @@
+#+ method: GET
+#+ summary: Given a model or model configuration, this API method returns its authors and their metadata
+#+ defaults:
+#+   - v: https://w3id.org/okn/i/mint/CYCLES
+
+prefix sd: <https://w3id.org/okn/o/sd#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT distinct ?a ?label ?name ?identifier 
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
+WHERE {
+  ?_v_iri sd:author ?a .
+  ?a rdfs:label ?label.
+  ?a sd:name ?name
+  OPTIONAL{?a sd:identifier ?desc}
+}

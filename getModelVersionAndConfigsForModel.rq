@@ -1,0 +1,20 @@
+#+ method: GET
+#+ summary: Query that given a model returns its versions and configurations and calibrations. Results are not grouped because calibrations may belong only to certain configurations.
+#+ defaults:
+#+   - model: https://w3id.org/okn/i/mint/ECONOMIC_AGGREGATE_CROP_SUPPLY
+
+prefix sd: <https://w3id.org/okn/o/sd#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT distinct ?version ?versionLabel ?versionId ?config ?configLabel ?calibration ?calibrationLabel
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
+WHERE {
+  ?_model_iri sd:hasVersion ?version.
+  ?version rdfs:label ?versionLabel.
+  optional{?version sd:hasConfiguration ?config.
+    ?config rdfs:label ?configLabel.
+  optional{?version sd:hasVersionId ?versionId.}
+  OPTIONAL{?config sdm:hasCalibration ?calibration.
+    ?calibration rdfs:label ?calibrationLabel}
+}

@@ -3,13 +3,11 @@
 #+ defaults:
 #+   - label: WGEN
 
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX mc: <https://w3id.org/mint/modelCatalog#>
-PREFIX dc: <http://purl.org/dc/terms/>
-PREFIX os: <http://ontosoft.org/software#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
 
 SELECT ?model 
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
-  ?model a mc:Model.
+  ?model a sdm:Model.
   FILTER REGEX(str(?model), ?_label_string) 
 }

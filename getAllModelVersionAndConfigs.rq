@@ -1,0 +1,19 @@
+#+ method: GET
+#+ summary: Query that returns all models, their versions and configurations and calibrations. Results are not grouped because calibrations may belong only to certain configurations.
+
+prefix sd: <https://w3id.org/okn/o/sd#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT distinct ?model ?version ?versionLabel ?versionId ?config ?configLabel ?calibration ?calibrationLabel
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
+WHERE {
+  ?model a sdm:Model.
+  ?model sd:hasVersion ?version.
+  ?version rdfs:label ?versionLabel.
+  ?version sd:hasConfiguration ?config.
+  optional{?version sd:hasVersionId ?versionId.}
+  ?config rdfs:label ?configLabel.
+  OPTIONAL{?config sdm:hasCalibration ?calibration.
+  ?calibration rdfs:label ?calibrationLabel}
+}

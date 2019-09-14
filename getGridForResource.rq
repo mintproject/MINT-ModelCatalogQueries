@@ -1,0 +1,22 @@
+#+ method: GET
+#+ summary: Given a model or model configuration, this method returns its grid metadata
+#+ defaults:
+#+   - v: https://w3id.org/okn/i/mint/PIHM
+
+prefix sd: <https://w3id.org/okn/o/sd#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT distinct ?label ?type ?description ?dimension ?shape ?spatialRes ?coordinateSystem
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
+WHERE {
+  ?_v_iri sdm:hasGrid ?grid .
+  ?grid rdfs:label ?label.
+  ?grid a ?type.
+  FILTER(?type != sdm:Grid)
+  OPTIONAL{?grid sd:description ?description}
+  OPTIONAL{?grid sdm:hasDimension ?dimension}
+  OPTIONAL{?grid sdm:hasShape ?shape}
+  OPTIONAL{?grid sdm:hasSpatialResolution ?spatialRes}
+  OPTIONAL{?grid sdm:hasCoordinateSystem ?coordinateSystem}
+}

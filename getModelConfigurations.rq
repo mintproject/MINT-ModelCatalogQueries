@@ -2,16 +2,16 @@
 #+ summary: Query that returns all existing configurations, the model and model version they belong to, their label and description associated to them.
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX mc: <https://w3id.org/mint/modelCatalog#>
-PREFIX dc: <http://purl.org/dc/terms/>
-PREFIX os: <http://ontosoft.org/software#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 
 SELECT ?model_config ?label ?compLoc ?desc ?modelVersion ?model
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
-  ?model_config a mc:ModelConfiguration.
+  ?model_config a sdm:ModelConfiguration.
   ?model_config rdfs:label ?label.
-  OPTIONAL{?model_config mc:hasComponentLocation ?compLoc}.
-  OPTIONAL{?model_config dc:description ?desc}.
-  ?model os:hasSoftwareVersion ?modelVersion.
-  ?modelVersion mc:hasConfiguration ?model_config.
+  OPTIONAL{?model_config sd:hasComponentLocation ?compLoc}.
+  OPTIONAL{?model_config sd:description ?desc}.
+  ?model sd:hasVersion ?modelVersion.
+  ?modelVersion sd:hasConfiguration ?model_config.
 }

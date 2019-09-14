@@ -1,13 +1,13 @@
 #+ method: GET
-#+ summary: Query that given a standard variable, returns the model configurations which produce output variables with that standard name.
+#+ summary: Query that given a standard variable, returns the calibrated model configurations which produce output variables with that standard name.
 #+ defaults:
-#+   - std: land_surface__albedo
+#+   - std: crop__simulated_produced_mass
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-SELECT DISTINCT ?model ?desc ?version ?configuration ?compLoc ?category
+SELECT DISTINCT ?model ?desc ?version ?configuration ?calibration ?compLoc ?category
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   ?model a sdm:Model.
@@ -15,8 +15,9 @@ WHERE {
   OPTIONAL{?model sdm:hasModelCategory ?category}.
   OPTIONAL{?model sd:description ?desc}.
   ?version sd:hasConfiguration ?configuration.
-  OPTIONAL{?configuration sd:hasComponentLocation ?compLoc}.
-  ?configuration sd:hasOutput ?output.
+  ?configuration sdm:hasCalibration ?calibration
+  OPTIONAL{?calibration sd:hasComponentLocation ?compLoc}.
+  ?calibration sd:hasOutput ?output.
   ?output sd:hasPresentation ?vp.
   ?vp sd:hasStandardVariable ?sv.
   ?sv rdfs:label ?_std_string.

@@ -1,1 +1,1 @@
-https://endpoint.mint.isi.edu/ds/query
+http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/query

@@ -1,0 +1,33 @@
+#+ method: GET
+#+ summary: Query that returns the model, model version, model configuration, description and URI of a variable when searching for it.
+
+#+ defaults:
+#+   - text: clay
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sdm: <https://w3id.org/okn/o/sdm#>
+prefix sd: <https://w3id.org/okn/o/sd#>
+
+select distinct ?w ?desc ?model ?modelV ?c 
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
+where {
+  VALUES ?property { sd:description rdfs:label }
+  ?w ?property ?desc.
+  ?model a sdm:Model.
+  {
+   ?model sd:hasVersion ?modelV.
+   ?modelV sd:hasConfiguration ?c.
+   ?c ?prop ?w.
+   ?w a sd:VariablePresentation.
+  }
+   union
+  {
+    ?model sd:hasVersion ?modelV.
+    ?modelV sd:hasConfiguration ?c.
+    ?c ?prop ?d.
+    ?d a sd:DatasetSpecification.
+    ?d sd:hasPresentation/sd:hasStandardVariable ?w.
+    ?w a <http://www.geoscienceontology.org/svo/svu#Variable>.
+  }
+  filter regex(str(?desc),?_text,"i")  
+}

@@ -1,28 +1,33 @@
 #+ method: GET
 #+ summary: Given a model configuration URI, this query returns the inputs/outputs and their data types, corresponding variable presentations, units and relevance level.
 #+ defaults:
-#+   - config: https://w3id.org/mint/instance/pihm
+#+   - config: https://w3id.org/okn/i/mint/pihm-v2
 
-PREFIX model: <https://w3id.org/mint/modelCatalog#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix dc: <http://purl.org/dc/terms/>
 
-SELECT  DISTINCT  ?prop ?io ?iolabel ?ioDescription ?format ?type ?dim ?vp ?st ?units ?rl
+
+SELECT  DISTINCT  ?prop ?io ?iolabel ?ioDescription ?format ?type ?dim ?position ?fixedValueURL ?fixedValueDCId ?vp ?st ?units ?rl
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
   {
-    ?_config_iri model:hasInput ?io.
+    ?_config_iri sd:hasInput ?io.
   }UNION
   {
-    ?_config_iri model:hasOutput ?io.
+    ?_config_iri sd:hasOutput ?io.
   }
   ?_config_iri ?prop ?io.
-  OPTIONAL {?io model:hasFormat ?format}
-  OPTIONAL {?io model:hasDimensionality ?dim}
-  OPTIONAL {?io dc:description ?ioDescription}
+  OPTIONAL {?io sd:hasFormat ?format}
+  OPTIONAL {?io sd:hasDimensionality ?dim}
+  OPTIONAL {?io sd:description ?ioDescription}
+  OPTIONAL {?io sd:position ?position.}
+  OPTIONAL {?io sd:hasFixedResource ?fv.
+            ?fv sd:dataCatalogIdentifier ?fixedValueDCId.
+            ?fv <http://www.w3.org/ns/prov#value> ?fixedValueURL.}
   ?io a ?type.
   ?io rdfs:label ?iolabel.
-  FILTER(?type != model:DatasetSpecification).
-  OPTIONAL {?io model:hasPresentation ?vp.?vp model:hasStandardVariable ?sv. ?sv rdfs:label ?st}
-  OPTIONAL {?io model:hasPresentation ?vp.?vp model:usesUnit ?u. ?u rdfs:label ?units.}
-  OPTIONAL {?io model:hasPresentation ?vp.?vp model:hasRelevanceLevel ?rl.}
+  FILTER(?type != sd:DatasetSpecification).
+  OPTIONAL {?io sd:hasPresentation ?vp.?vp sd:hasStandardVariable ?sv. ?sv rdfs:label ?st}
+  OPTIONAL {?io sd:hasPresentation ?vp.?vp sd:usesUnit ?u. ?u rdfs:label ?units.}
+  OPTIONAL {?io sd:hasPresentation ?vp.?vp sd:hasRelevanceLevel ?rl.}
 }

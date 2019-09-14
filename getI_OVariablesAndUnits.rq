@@ -1,23 +1,24 @@
 #+ method: GET
 #+ summary: Query that returns returns the variablePresentations associated to the provided input/output, and their units. Additionally, this query returns the variable presentation label, description, long name, short name and standard variable.
 #+ defaults:
-#+   - io: https://w3id.org/mint/instance/pihm_forc
+#+   - io: https://w3id.org/okn/i/mint/pihm_forc
 
-PREFIX mc: <https://w3id.org/mint/modelCatalog#>
-PREFIX dc: <http://purl.org/dc/terms/>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT distinct ?vp ?label ?shortName ?longName ?description ?unit ?sn ?rl
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
-  ?_io_iri mc:hasPresentation ?vp.
+  ?_io_iri sd:hasPresentation ?vp.
   OPTIONAL{
-    ?vp mc:usesUnit ?u.
+    ?vp sd:usesUnit ?u.
     ?u rdfs:label ?unit.
   }.
   ?vp rdfs:label ?label.
-  OPTIONAL{?vp dc:description ?description.}.
-  OPTIONAL{?vp mc:hasLongName ?longName.}.
-  OPTIONAL{?vp mc:hasShortName ?shortName.}.
-  OPTIONAL{?vp mc:hasStandardVariable ?svn. ?svn rdfs:label ?sn}.
-  OPTIONAL{?vp mc:hasRelevanceLevel ?rl.}.
+  OPTIONAL{?vp sd:description ?description.}.
+  OPTIONAL{?vp sd:hasLongName ?longName.}.
+  OPTIONAL{?vp sd:hasShortName ?shortName.}.
+  OPTIONAL{?vp sd:hasStandardVariable ?svn. ?svn rdfs:label ?sn}.
+  OPTIONAL{?vp sd:hasRelevanceLevel ?rl.}.
 }

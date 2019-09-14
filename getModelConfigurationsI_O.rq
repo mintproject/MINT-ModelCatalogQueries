@@ -2,22 +2,24 @@
 
 #+ summary: Query that returns a list of all available configurations, their inputs files and output files.
 
-PREFIX model: <https://w3id.org/mint/modelCatalog#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+prefix sd: <https://w3id.org/okn/o/sd#>
 SELECT ?config ?compLoc
 (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables)
 (GROUP_CONCAT(DISTINCT ?typei;SEPARATOR=', ') AS ?input_variable_types)
 (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables)
 (GROUP_CONCAT(DISTINCT ?typeo;SEPARATOR=', ') AS ?output_variable_types)
 (GROUP_CONCAT(DISTINCT ?param;SEPARATOR=', ') AS ?parameters)
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
-  ?config a model:ModelConfiguration.
-  OPTIONAL{?config model:hasComponentLocation ?compLoc}.
-  ?config model:hasInput ?input.
+  ?config a sdm:ModelConfiguration.
+  OPTIONAL{?config sd:hasComponentLocation ?compLoc}.
+  ?config sd:hasInput ?input.
   ?input a ?typei.
-  FILTER(?typei != model:DatasetSpecification).
-  ?config model:hasOutput ?output.
+  FILTER(?typei != sd:DatasetSpecification).
+  ?config sd:hasOutput ?output.
   ?output a ?typeo.
-  FILTER(?typeo != model:DatasetSpecification).
-  OPTIONAL{?config model:hasParameter ?param}.
+  FILTER(?typeo != sd:DatasetSpecification).
+  OPTIONAL{?config sd:hasParameter ?param}.
 }
 GROUP BY ?config ?compLoc
