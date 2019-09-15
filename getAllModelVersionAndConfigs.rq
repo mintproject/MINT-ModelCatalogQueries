@@ -8,12 +8,23 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT distinct ?model ?version ?versionLabel ?versionId ?config ?configLabel ?calibration ?calibrationLabel
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
 WHERE {
-  ?model a sdm:Model.
-  ?model sd:hasVersion ?version.
-  ?version rdfs:label ?versionLabel.
-  ?version sd:hasConfiguration ?config.
-  optional{?version sd:hasVersionId ?versionId.}
-  ?config rdfs:label ?configLabel.
-  OPTIONAL{?config sdm:hasCalibration ?calibration.
-  ?calibration rdfs:label ?calibrationLabel}
+   ?model a sdm:Model.
+   ?model sd:hasVersion ?version.
+   ?version rdfs:label ?versionLabel.
+   OPTIONAL {
+       ?version sd:hasVersionId ?versionId.
+   }
+   {
+     OPTIONAL {
+       ?version sd:hasConfiguration ?config.
+       ?config rdfs:label ?configLabel.
+     }
+   } UNION {
+       ?version sd:hasConfiguration ?config.
+       ?config rdfs:label ?configLabel.
+       OPTIONAL {
+         ?config sdm:hasCalibration ?calibration.
+         ?calibration rdfs:label ?calibrationLabel
+       }
+   }
 }

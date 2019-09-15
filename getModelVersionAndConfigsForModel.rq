@@ -12,9 +12,14 @@ from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint>
 WHERE {
   ?_model_iri sd:hasVersion ?version.
   ?version rdfs:label ?versionLabel.
+  {
   optional{?version sd:hasConfiguration ?config.
+    ?config rdfs:label ?configLabel.}
+  }UNION{
+    ?version sd:hasConfiguration ?config.
     ?config rdfs:label ?configLabel.
-  optional{?version sd:hasVersionId ?versionId.}
+    optional{?version sd:hasVersionId ?versionId.}
   OPTIONAL{?config sdm:hasCalibration ?calibration.
     ?calibration rdfs:label ?calibrationLabel}
+  }
 }
