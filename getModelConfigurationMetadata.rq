@@ -77,7 +77,7 @@ WHERE {
   OPTIONAL{?_modelConfig_iri sd:website ?web}.
   OPTIONAL{?_modelConfig_iri sdm:hasEquation ?eq}.
   OPTIONAL{?_modelConfig_iri sdm:hasExplanationDiagram ?explD}
-  OPTIONAL{?_modelConfig_iri sdm:adjustableParameter ?adjVar}
+  OPTIONAL{?_modelConfig_iri sdm:adjustableParameter/rdfs:label ?adjVar}
   OPTIONAL{?_modelConfig_iri sdm:calibrationMethod ?calibMethod}
   OPTIONAL{?_modelConfig_iri sdm:calibrationTargetVariable ?targetVar}
   OPTIONAL{?_modelConfig_iri sdm:hasCalibration ?calib}
